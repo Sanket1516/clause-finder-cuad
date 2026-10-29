@@ -102,11 +102,15 @@ def evaluate(
     """Evaluate a configuration on ONE explicitly named split and save per-query evidence and metrics."""
     from ..data.queries import ROOT
     from ..evaluation.evaluator import evaluate as run_eval, headline, save_run
-    from ..evaluation.guard import SplitGuardError
+    from ..evaluation.guard import SplitGuardError, check_split
     from ..data.loader import load_store
     from ..pipeline import Pipeline
 
     def run():
+        try:  # protect the held-out split BEFORE touching any data or configuration
+            check_split(split, "final" if final else "development", confirm_test)
+        except SplitGuardError as e:
+            _fail(str(e), EXIT_INPUT)
         cfg = load_config(resolve_config_path(config))
         if cfg.abstention.threshold is None and split == "test":
             frozen = resolve_config_path(config).with_name(resolve_config_path(config).stem + "_resolved.yaml")
