@@ -127,3 +127,20 @@ Each evaluation records:
 Model downloads are pinned by Hugging Face revision. LLM outputs (if any) are cached by `sha256(model + prompt)`, so
 reruns make no model calls. Re-running an evaluation with the same config and commit must reproduce the metrics exactly.
 A regression test pins baseline train metrics after the first run.
+
+---
+
+## Amendment 1 (2026-10-29, written and committed BEFORE any retrieval metric was computed)
+
+1. **Actual counts** (Prompt 02): benchmark train 140 / test 54; unanswerable train 39 / test 10. Wherever this document says
+   "about 136 train queries" read 140. The acceptance rule, thresholds and guardrails are unchanged.
+2. **Diagnosis taxonomy refined** (replaces the table in section 6; evaluated at k = primary_k over the top-64 non-overlapping candidates):
+   `hit` (recall@k >= 0.99), `partial_span` (0 < recall@k < 0.99), `ranked_too_low` (recall@k = 0 but a candidate at rank > k overlaps gold),
+   `right_doc_wrong_section` (gold never overlapped in top 64; top-1 passage is in the gold document),
+   `wrong_document` (gold never overlapped in top 64; top-1 passage is in another document), `no_candidates`, `ingestion_failure`
+   (returned text != document[start:end]). Flags: `ambiguous_ground_truth` (gold > 40% of the document or < 15 chars), and in the
+   end-to-end view `false_abstention`. Unanswerable: `correct_abstention` / `false_answer`.
+   "Incorrect source offsets" is covered by `ingestion_failure`, which is checked for every returned passage of every query.
+3. **Abstention calibration uses answerable queries only**: tau = the (floor(target_far*n)+1)-th smallest top-signal value among the
+   n answerable TRAIN queries. No unanswerable label is used to fit tau, which keeps the 39 train unanswerables a clean estimate.
+4. Candidate pool: `retrieval.candidates` = number of chunks kept before overlap removal; evaluation reads at most 64 passages.
