@@ -30,3 +30,6 @@ venv/
 .streamlit/secrets.toml
 .DS_Store
 Thumbs.db
+
+# archived earlier runs (created by --restart)
+03_experiments/previous_runs/

@@ -1,0 +1,14 @@
+{
+  "command": "python -m contract_intel evaluate --config baseline --split test --final --confirm-test --out-dir 03_experiments/final_eval/baseline",
+  "timestamp_utc": "2026-10-29T16:18:04+00:00",
+  "git_commit": "de28438310153637f6a443cfd24547c557f3df0b",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "machine": "AMD64",
+  "split": "test",
+  "purpose": "final",
+  "experiment_id": "baseline-2412813f",
+  "config_hash": "2412813f60ee38a61382ffef9003aaaf0a8cf383ff7c01d1f97acef5e8472d1e",
+  "wall_seconds": 0.179,
+  "index_build_seconds": 0.119
+}

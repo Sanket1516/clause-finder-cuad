@@ -1,0 +1,421 @@
+{
+  "results": {
+    "baseline": {
+      "train": {
+        "n_answerable": 140,
+        "n_unanswerable": 39,
+        "threshold": 28.365286690602836,
+        "recall": {
+          "1": 0.0,
+          "2": 0.0005817099567099567,
+          "4": 0.021277655519651915,
+          "8": 0.09437640862351543,
+          "16": 0.17305949547372623,
+          "32": 0.3025313219358035,
+          "64": 0.4281970596459864
+        },
+        "precision": {
+          "1": 0.0,
+          "2": 0.0003071428571428571,
+          "4": 0.006593546141691304,
+          "8": 0.010584480365028891,
+          "16": 0.0123438865559597,
+          "32": 0.010672529447008519,
+          "64": 0.007168830379150494
+        },
+        "e2e_recall": {
+          "1": 0.0,
+          "2": 0.0005817099567099567,
+          "4": 0.019332283147869642,
+          "8": 0.09243103625173316,
+          "16": 0.171114123101944,
+          "32": 0.30058594956402124,
+          "64": 0.41185604162855843
+        },
+        "e2e_precision": {
+          "1": 0.0,
+          "2": 0.0003071428571428571,
+          "4": 0.005886403284548447,
+          "8": 0.01023090893645746,
+          "16": 0.012167100841673986,
+          "32": 0.010584136589865662,
+          "64": 0.006980437522007636
+        },
+        "false_abstentions": 6,
+        "correct_abstentions": 7,
+        "false_answers": 32,
+        "answerable_answered": 134,
+        "FAR": 0.04285714285714286,
+        "CAR": 0.1794871794871795,
+        "false_answer_rate": 0.8205128205128205,
+        "AUROC": 0.5456959706959706,
+        "doc_hit@1": 1.0,
+        "labels": {
+          "right_doc_wrong_section": 59,
+          "ranked_too_low": 71,
+          "hit": 1,
+          "partial_span": 9
+        },
+        "p50_ms": 2.1679999999999997,
+        "p95_ms": 4.851,
+        "index_build_s": 0.199,
+        "n_chunks": 2437,
+        "wall_s": 0.533,
+        "unanswerable_by_category": {
+          "absent_clause": {
+            "n": 26,
+            "correct_abstentions": 0
+          },
+          "not_in_corpus": {
+            "n": 7,
+            "correct_abstentions": 7
+          },
+          "out_of_scope": {
+            "n": 6,
+            "correct_abstentions": 0
+          }
+        }
+      },
+      "test": {
+        "n_answerable": 54,
+        "n_unanswerable": 10,
+        "threshold": 28.365286690602836,
+        "recall": {
+          "1": 0.0,
+          "2": 0.0,
+          "4": 0.04269442558648261,
+          "8": 0.0792457962572599,
+          "16": 0.18356319739645274,
+          "32": 0.24425669829543914,
+          "64": 0.35552808130882135
+        },
+        "precision": {
+          "1": 0.0,
+          "2": 0.0,
+          "4": 0.003983327900091967,
+          "8": 0.00810062559979852,
+          "16": 0.012988663157061169,
+          "32": 0.009470721785607063,
+          "64": 0.007324920292158971
+        },
+        "e2e_recall": {
+          "1": 0.0,
+          "2": 0.0,
+          "4": 0.04269442558648261,
+          "8": 0.07714451129883208,
+          "16": 0.17648957561126424,
+          "32": 0.23718307651025064,
+          "64": 0.32280221296043393
+        },
+        "e2e_precision": {
+          "1": 0.0,
+          "2": 0.0,
+          "4": 0.003983327900091967,
+          "8": 0.007457107081280003,
+          "16": 0.010870607601505615,
+          "32": 0.008411694007829285,
+          "64": 0.005785568440307119
+        },
+        "false_abstentions": 4,
+        "correct_abstentions": 1,
+        "false_answers": 9,
+        "answerable_answered": 50,
+        "FAR": 0.07407407407407407,
+        "CAR": 0.1,
+        "false_answer_rate": 0.9,
+        "AUROC": 0.562037037037037,
+        "doc_hit@1": 1.0,
+        "labels": {
+          "ranked_too_low": 26,
+          "right_doc_wrong_section": 25,
+          "hit": 2,
+          "partial_span": 1
+        },
+        "p50_ms": 1.8119999999999998,
+        "p95_ms": 4.092,
+        "index_build_s": 0.119,
+        "n_chunks": 2437,
+        "wall_s": 0.179,
+        "unanswerable_by_category": {
+          "absent_clause": {
+            "n": 7,
+            "correct_abstentions": 0
+          },
+          "not_in_corpus": {
+            "n": 1,
+            "correct_abstentions": 1
+          },
+          "out_of_scope": {
+            "n": 2,
+            "correct_abstentions": 0
+          }
+        }
+      }
+    },
+    "final": {
+      "train": {
+        "n_answerable": 140,
+        "n_unanswerable": 39,
+        "threshold": 0.24006848213978485,
+        "recall": {
+          "1": 0.21371800741927666,
+          "2": 0.3365982699925665,
+          "4": 0.44831316821026096,
+          "8": 0.5915648609342202,
+          "16": 0.7187045790844023,
+          "32": 0.8409078210668774,
+          "64": 0.9086822695309001
+        },
+        "precision": {
+          "1": 0.11988572819312654,
+          "2": 0.10892928251470867,
+          "4": 0.07523056521686433,
+          "8": 0.05612671997903663,
+          "16": 0.03565661577431806,
+          "32": 0.02400265589777618,
+          "64": 0.018785002531752953
+        },
+        "e2e_recall": {
+          "1": 0.2065751502764195,
+          "2": 0.3223125557068522,
+          "4": 0.4197417396388324,
+          "8": 0.5415648609342203,
+          "16": 0.6687045790844023,
+          "32": 0.7909078210668774,
+          "64": 0.8586822695309001
+        },
+        "e2e_precision": {
+          "1": 0.11817060583378747,
+          "2": 0.10546232906468223,
+          "4": 0.0719331769678773,
+          "8": 0.052469798038705266,
+          "16": 0.03334767532661189,
+          "32": 0.022015081052612455,
+          "64": 0.016797427686589223
+        },
+        "false_abstentions": 7,
+        "correct_abstentions": 16,
+        "false_answers": 23,
+        "answerable_answered": 133,
+        "FAR": 0.05,
+        "CAR": 0.41025641025641024,
+        "false_answer_rate": 0.5897435897435898,
+        "AUROC": 0.7365384615384616,
+        "doc_hit@1": 1.0,
+        "labels": {
+          "hit": 56,
+          "ranked_too_low": 68,
+          "partial_span": 12,
+          "right_doc_wrong_section": 4
+        },
+        "p50_ms": 3.508,
+        "p95_ms": 6.128,
+        "index_build_s": 0.287,
+        "n_chunks": 1941,
+        "wall_s": 0.701,
+        "unanswerable_by_category": {
+          "absent_clause": {
+            "n": 26,
+            "correct_abstentions": 12
+          },
+          "not_in_corpus": {
+            "n": 7,
+            "correct_abstentions": 3
+          },
+          "out_of_scope": {
+            "n": 6,
+            "correct_abstentions": 1
+          }
+        }
+      },
+      "test": {
+        "n_answerable": 54,
+        "n_unanswerable": 10,
+        "threshold": 0.24006848213978485,
+        "recall": {
+          "1": 0.20225100039541014,
+          "2": 0.34549889410852613,
+          "4": 0.4484091509048038,
+          "8": 0.5832211698529068,
+          "16": 0.7465502803713683,
+          "32": 0.8869034772010225,
+          "64": 0.9245982763876744
+        },
+        "precision": {
+          "1": 0.09635738205958022,
+          "2": 0.10092017420997303,
+          "4": 0.0848802479510912,
+          "8": 0.054972216730933526,
+          "16": 0.0383695100442433,
+          "32": 0.02593331921127235,
+          "64": 0.016170587841619642
+        },
+        "e2e_recall": {
+          "1": 0.20225100039541014,
+          "2": 0.32698037559000753,
+          "4": 0.4298906323862853,
+          "8": 0.5647026513343884,
+          "16": 0.6909947248158127,
+          "32": 0.8128294031269484,
+          "64": 0.8505242023136004
+        },
+        "e2e_precision": {
+          "1": 0.09635738205958022,
+          "2": 0.09959177493110405,
+          "4": 0.08419738774233108,
+          "8": 0.05466302262328981,
+          "16": 0.037728601205040256,
+          "32": 0.02510271423813926,
+          "64": 0.015399637394488786
+        },
+        "false_abstentions": 4,
+        "correct_abstentions": 3,
+        "false_answers": 7,
+        "answerable_answered": 50,
+        "FAR": 0.07407407407407407,
+        "CAR": 0.3,
+        "false_answer_rate": 0.7,
+        "AUROC": 0.6833333333333333,
+        "doc_hit@1": 1.0,
+        "labels": {
+          "ranked_too_low": 23,
+          "hit": 21,
+          "partial_span": 7,
+          "right_doc_wrong_section": 3
+        },
+        "p50_ms": 3.768,
+        "p95_ms": 7.914,
+        "index_build_s": 0.16,
+        "n_chunks": 1941,
+        "wall_s": 0.33,
+        "unanswerable_by_category": {
+          "absent_clause": {
+            "n": 7,
+            "correct_abstentions": 2
+          },
+          "not_in_corpus": {
+            "n": 1,
+            "correct_abstentions": 1
+          },
+          "out_of_scope": {
+            "n": 2,
+            "correct_abstentions": 0
+          }
+        }
+      }
+    }
+  },
+  "uncertainty": {
+    "train": {
+      "final_R@4_bootstrap95": [
+        0.3696013595348501,
+        0.5276534431371822
+      ],
+      "baseline_R@4_bootstrap95": [
+        0.0065580300464309,
+        0.040827774725971364
+      ],
+      "paired_delta_R@4": 0.42703551269060913,
+      "paired_delta_bootstrap95": [
+        0.3458440943537608,
+        0.5099248534667218
+      ],
+      "bootstrap": {
+        "B": 2000,
+        "seed": 0,
+        "resampled": "queries"
+      },
+      "baseline_CAR_wilson95": [
+        0.08977151811469994,
+        0.3266835162444276
+      ],
+      "baseline_FAR_wilson95": [
+        0.01978727129897899,
+        0.09034498529438482
+      ],
+      "final_CAR_wilson95": [
+        0.27079089435400483,
+        0.5658165152665509
+      ],
+      "final_FAR_wilson95": [
+        0.024427961911698888,
+        0.09960847817239363
+      ]
+    },
+    "test": {
+      "final_R@4_bootstrap95": [
+        0.3201422908686906,
+        0.5737311261850051
+      ],
+      "baseline_R@4_bootstrap95": [
+        0.0,
+        0.09824998114203816
+      ],
+      "paired_delta_R@4": 0.40571472531832126,
+      "paired_delta_bootstrap95": [
+        0.28171620794525043,
+        0.529283657762632
+      ],
+      "bootstrap": {
+        "B": 2000,
+        "seed": 0,
+        "resampled": "queries"
+      },
+      "baseline_CAR_wilson95": [
+        0.01787574951572113,
+        0.4041563854975721
+      ],
+      "baseline_FAR_wilson95": [
+        0.029181055323684174,
+        0.17554357193420633
+      ],
+      "final_CAR_wilson95": [
+        0.10778928748621183,
+        0.6032267800204347
+      ],
+      "final_FAR_wilson95": [
+        0.029181055323684174,
+        0.17554357193420633
+      ]
+    }
+  },
+  "test_run_ledger": [
+    {
+      "run_no": 1,
+      "timestamp": "2026-10-29T16:15:57+00:00",
+      "experiment_id": "test-75f1b203",
+      "config_hash": "75f1b2035a86cd810ec78e0489d2e7d5b50893adf733be519efa06106c401a6c",
+      "git_commit": "3f0ba4e5fa26fef3d8067c9fd3fba4a43be7bf1d",
+      "reason": "final reporting",
+      "metrics_path": "(recorded at evaluation start)"
+    },
+    {
+      "run_no": 2,
+      "timestamp": "2026-10-29T16:16:43+00:00",
+      "experiment_id": "test-75f1b203",
+      "config_hash": "75f1b2035a86cd810ec78e0489d2e7d5b50893adf733be519efa06106c401a6c",
+      "git_commit": "3f0ba4e5fa26fef3d8067c9fd3fba4a43be7bf1d",
+      "reason": "final reporting",
+      "metrics_path": "(recorded at evaluation start)"
+    },
+    {
+      "run_no": 3,
+      "timestamp": "2026-10-29T16:18:04+00:00",
+      "experiment_id": "baseline-2412813f",
+      "config_hash": "2412813f60ee38a61382ffef9003aaaf0a8cf383ff7c01d1f97acef5e8472d1e",
+      "git_commit": "de28438310153637f6a443cfd24547c557f3df0b",
+      "reason": "final reporting",
+      "metrics_path": "(recorded at evaluation start)"
+    },
+    {
+      "run_no": 4,
+      "timestamp": "2026-10-29T16:18:05+00:00",
+      "experiment_id": "final-0a25f701",
+      "config_hash": "0a25f7011dad1f33c06a1446eaf793670211aa561f4c49017175a9ca51ff3056",
+      "git_commit": "de28438310153637f6a443cfd24547c557f3df0b",
+      "reason": "final reporting",
+      "metrics_path": "(recorded at evaluation start)"
+    }
+  ],
+  "note": "Uncertainty values are computed from the saved per-query predictions (percentile bootstrap over queries; Wilson interval for rates). Small samples: treat as rough."
+}

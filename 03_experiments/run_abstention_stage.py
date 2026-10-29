@@ -13,5 +13,9 @@ sys.path.insert(0, str(ROOT / "04_src"))
 from contract_intel.experiments.abstention_stage import run_stage  # noqa: E402
 
 if __name__ == "__main__":
+    if "--restart" in sys.argv:
+        from contract_intel.experiments.archive import archive_previous
+        print("archived to:", archive_previous(ROOT, "experiment_log_round2.jsonl", "r2-*"))
+        sys.argv.remove("--restart")
     out = run_stage(ROOT, ROOT / "03_experiments" / "proposals" / "catalogue_round2.yaml", "python " + " ".join(sys.argv))
     print(json.dumps(out, indent=1))
