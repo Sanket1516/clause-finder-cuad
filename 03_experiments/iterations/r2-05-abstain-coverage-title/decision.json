@@ -1,0 +1,88 @@
+{
+  "iteration": 5,
+  "id": "abstain-coverage-title",
+  "experiment_id": "r2-05-abstain-coverage-title-40c9b4de",
+  "parent_experiment_id": "r2-01-abstain-norm-547ff2f3",
+  "proposer": "rule:catalogue_round2/abstain-coverage-title",
+  "hypothesis": "Multiplying clause-word coverage by title match catches both missing clauses and missing contracts.",
+  "why_tried": "round-2 catalogue order (post hoc abstention stage)",
+  "config_path": "03_experiments\\iterations\\r2-05-abstain-coverage-title\\config.yaml",
+  "config_hash": "40c9b4dec5305f4c095f9b70c130b720442020ab8f97c242b5e94e345d93c5e8",
+  "diff": {
+    "abstention.signal": [
+      "top1_norm",
+      "coverage_x_title"
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_abstention_stage.py",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 0.17470546930754965,
+    "R@1": 0.21371800741927666,
+    "P@1": 0.11988572819312654,
+    "e2e_R@1": 0.21371800741927666,
+    "e2e_P@1": 0.11988572819312654,
+    "R@2": 0.3365982699925665,
+    "P@2": 0.10892928251470867,
+    "e2e_R@2": 0.3294554128497093,
+    "e2e_P@2": 0.10632621444184194,
+    "R@4": 0.44831316821026096,
+    "P@4": 0.07523056521686433,
+    "e2e_R@4": 0.43402745392454667,
+    "e2e_P@4": 0.07351555838855164,
+    "R@8": 0.5915648609342202,
+    "P@8": 0.05612671997903663,
+    "e2e_R@8": 0.5558505752199346,
+    "e2e_P@8": 0.053248676496192866,
+    "R@16": 0.7187045790844023,
+    "P@16": 0.03565661577431806,
+    "e2e_R@16": 0.6829902933701166,
+    "e2e_P@16": 0.033741757693437166,
+    "R@32": 0.8409078210668774,
+    "P@32": 0.02400265589777618,
+    "e2e_R@32": 0.794479249638306,
+    "e2e_P@32": 0.02215478668351182,
+    "R@64": 0.9086822695309001,
+    "P@64": 0.018785002531752953,
+    "e2e_R@64": 0.86086942346224,
+    "e2e_P@64": 0.017012179435337227,
+    "FAR": 0.05,
+    "CAR": 0.38461538461538464,
+    "false_answer_rate": 0.6153846153846154,
+    "AUROC": 0.7758241758241758,
+    "doc_hit@1": 1.0,
+    "p95_ms": 4.374,
+    "build_s": 0.229
+  },
+  "decision": "rejected",
+  "decision_reason": "gain of -1 correct abstentions is below the minimum of 2",
+  "delta_primary": -0.02564102564102564,
+  "gain_queries": -1,
+  "bootstrap": {
+    "mean_delta": -0.02564102564102564,
+    "p_gain": 0.287,
+    "ci95": [
+      -0.15384615384615385,
+      0.10256410256410256
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "R1_retrieval_identical": true,
+    "R2_no_category_loses_more_than_1": true,
+    "R3_false_abstention_within_budget": true
+  },
+  "category_correct_abstentions": {
+    "absent_clause": 11,
+    "not_in_corpus": 3,
+    "out_of_scope": 1
+  },
+  "runtime_s": 0.741,
+  "git_commit": "a63a1eb180be7806e6095f008866a1122926a133",
+  "timestamp_utc": "2026-10-29T15:56:06+00:00",
+  "python": "3.11.9"
+}

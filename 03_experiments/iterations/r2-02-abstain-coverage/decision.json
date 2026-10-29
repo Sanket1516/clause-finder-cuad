@@ -1,0 +1,88 @@
+{
+  "iteration": 2,
+  "id": "abstain-coverage",
+  "experiment_id": "r2-02-abstain-coverage-7741a5ec",
+  "parent_experiment_id": "r2-01-abstain-norm-547ff2f3",
+  "proposer": "rule:catalogue_round2/abstain-coverage",
+  "hypothesis": "The share of the question's distinctive words that appear in the best passage is low when the clause is not there.",
+  "why_tried": "round-2 catalogue order (post hoc abstention stage)",
+  "config_path": "03_experiments\\iterations\\r2-02-abstain-coverage\\config.yaml",
+  "config_hash": "7741a5ec7d195dc541723f5d3074cb329b0580693d3d9784b39f0cb102fd6ca7",
+  "diff": {
+    "abstention.signal": [
+      "top1_norm",
+      "coverage"
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_abstention_stage.py",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 0.17470546930754965,
+    "R@1": 0.21371800741927666,
+    "P@1": 0.11988572819312654,
+    "e2e_R@1": 0.21371800741927666,
+    "e2e_P@1": 0.11988572819312654,
+    "R@2": 0.3365982699925665,
+    "P@2": 0.10892928251470867,
+    "e2e_R@2": 0.3294554128497093,
+    "e2e_P@2": 0.10632621444184194,
+    "R@4": 0.44831316821026096,
+    "P@4": 0.07523056521686433,
+    "e2e_R@4": 0.43402745392454667,
+    "e2e_P@4": 0.07351555838855164,
+    "R@8": 0.5915648609342202,
+    "P@8": 0.05612671997903663,
+    "e2e_R@8": 0.5558505752199346,
+    "e2e_P@8": 0.053248676496192866,
+    "R@16": 0.7187045790844023,
+    "P@16": 0.03565661577431806,
+    "e2e_R@16": 0.6829902933701166,
+    "e2e_P@16": 0.033741757693437166,
+    "R@32": 0.8409078210668774,
+    "P@32": 0.02400265589777618,
+    "e2e_R@32": 0.794479249638306,
+    "e2e_P@32": 0.02215478668351182,
+    "R@64": 0.9086822695309001,
+    "P@64": 0.018785002531752953,
+    "e2e_R@64": 0.86086942346224,
+    "e2e_P@64": 0.017012179435337227,
+    "FAR": 0.05,
+    "CAR": 0.3333333333333333,
+    "false_answer_rate": 0.6666666666666666,
+    "AUROC": 0.7206959706959707,
+    "doc_hit@1": 1.0,
+    "p95_ms": 5.657,
+    "build_s": 0.211
+  },
+  "decision": "rejected",
+  "decision_reason": "guardrail failed: R2_no_category_loses_more_than_1",
+  "delta_primary": -0.07692307692307693,
+  "gain_queries": -3,
+  "bootstrap": {
+    "mean_delta": -0.07692307692307693,
+    "p_gain": 0.1195,
+    "ci95": [
+      -0.23076923076923078,
+      0.07692307692307693
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "R1_retrieval_identical": true,
+    "R2_no_category_loses_more_than_1": false,
+    "R3_false_abstention_within_budget": true
+  },
+  "category_correct_abstentions": {
+    "absent_clause": 11,
+    "not_in_corpus": 1,
+    "out_of_scope": 1
+  },
+  "runtime_s": 0.787,
+  "git_commit": "a63a1eb180be7806e6095f008866a1122926a133",
+  "timestamp_utc": "2026-10-29T15:56:03+00:00",
+  "python": "3.11.9"
+}

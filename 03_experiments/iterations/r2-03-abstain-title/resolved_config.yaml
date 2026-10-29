@@ -1,0 +1,43 @@
+name: r2-03-abstain-title
+description: The share of the named title's distinctive words found in the routed
+  contract's opening is low when the contract is not indexed.
+chunking:
+  strategy: paragraph
+  size_chars: 800
+  overlap_chars: 0
+  min_chars: 20
+query:
+  strip_title_prefix: true
+routing:
+  mode: filter
+  top_docs: 1
+  head_chars: 3000
+  boost: 1.0
+retrieval:
+  method: bm25
+  candidates: 100
+  bm25:
+    k1: 1.5
+    b: 0.75
+    tokenizer:
+      lowercase: true
+      stopwords: none
+      stem: light
+      min_token_len: 1
+ranking:
+  remove_overlaps: true
+  expand_chars: 0
+abstention:
+  signal: title_match
+  threshold: 0.9034716612789601
+  target_far: 0.05
+evaluation:
+  ks:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  - 32
+  - 64
+  primary_k: 4

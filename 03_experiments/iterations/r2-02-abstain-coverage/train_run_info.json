@@ -1,0 +1,14 @@
+{
+  "command": "python 03_experiments/run_abstention_stage.py",
+  "timestamp_utc": "2026-10-29T15:56:03+00:00",
+  "git_commit": "a63a1eb180be7806e6095f008866a1122926a133",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "machine": "AMD64",
+  "split": "train",
+  "purpose": "development",
+  "experiment_id": "r2-02-abstain-coverage-7741a5ec",
+  "config_hash": "7741a5ec7d195dc541723f5d3074cb329b0580693d3d9784b39f0cb102fd6ca7",
+  "wall_seconds": 0.534,
+  "index_build_seconds": 0.211
+}

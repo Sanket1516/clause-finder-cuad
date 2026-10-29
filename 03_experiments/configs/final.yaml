@@ -1,6 +1,6 @@
 name: final
-description: 'Best configuration on TRAIN under the declared rule; baseline + accepted
-  changes: route-filter, paragraph-chunks, stem-light'
+description: 'Round-1 selection (routing + paragraph chunks + light stemming) plus
+  round-2 gate: abstain-norm'
 chunking:
   strategy: paragraph
   size_chars: 800
@@ -28,7 +28,7 @@ ranking:
   remove_overlaps: true
   expand_chars: 0
 abstention:
-  signal: top1_score
+  signal: top1_norm
   threshold: null
   target_far: 0.05
 evaluation:
