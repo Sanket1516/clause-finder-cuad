@@ -12,7 +12,7 @@ and are described in words here. Status: PASS = executed or inspected with evide
 | R-03 | Measured, evidence-driven improvement | `experiment_log*.jsonl`, REPORT s6 | 15 + 5 logged iterations | PASS | — |
 | R-04 | Deadline 08:00 IST Fri 30 Oct | not yet submitted | — | NOT VERIFIED | user submits before the deadline |
 | R-05 | Python | Python 3.11.9 | — | PASS | — |
-| R-06 | Repo link to datascience.ai@jiostar.com; **private + collaborator access** per logistics section, but the deliverables section says "public" | not done; user asked for a public repo on `Sanket1516`; repo did not exist at audit time | **Inconsistency in the brief, flagged**; I could not create the repo (no credentials) | NOT VERIFIED | user decides visibility; see SUBMISSION_CHECKLIST |
+| R-06 | Repo link to the recipient named in the brief; **private + collaborator access** per logistics section, but the deliverables section says "public" | not done; user asked for a public repo on `Sanket1516`; repo did not exist at audit time | **Inconsistency in the brief, flagged**; I could not create the repo (no credentials) | NOT VERIFIED | user decides visibility; see SUBMISSION_CHECKLIST |
 | R-07 | Assumptions documented | README s9, `01_planning/assumptions.md` | present | PASS | — |
 | R-08 | AI tool usage noted in README | README s10 | stated; **contains a placeholder the candidate must complete** | PARTIAL | candidate edits README s10 |
 | R-09 | Candidate can explain/modify all code | `08_demo/interview_preparation.md` | cannot be verified by me | NOT VERIFIED | candidate rehearses; see KNOWN_ISSUES |

@@ -16,7 +16,7 @@ Scope: anonymous clone of `github.com/Sanket1516/JIO-STAR` (18 commits, 360 file
 | Data in the repo | public CUAD (CC BY 4.0) excerpts only; no private contracts |
 
 ## Not vulnerabilities, but exposure to know about
-1. Repository name `JIO-STAR` and `09_submission/*.md` name the company and the submission address. Consider renaming the repo.
+1. The old repository name identified the company; it should be renamed (done by the owner on GitHub).
 2. All 18 commits expose the author email `sanketmali0909@gmail.com`.
 3. `01_planning/` paraphrases the assignment's requirements with page numbers; the brief is confidential. Consider deleting that folder (history keeps it unless rewritten).
 4. A public solution to a hiring assignment can be copied by other candidates; the brief says work must be independently completed.

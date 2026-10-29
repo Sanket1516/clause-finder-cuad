@@ -1,7 +1,7 @@
 # Submission checklist
 
 Tick only what you have verified yourself. "Done by assistant" means evidenced in `FINAL_AUDIT.md`. **Nothing here has been sent, published or shared by the assistant.**
-Brief deadline: **08:00 IST, Friday 30 October** (per the brief's logistics section). Recipient per the brief: the address in its logistics section (`datascience.ai@` at the company's domain) — re-read the brief to confirm spelling before sending.
+Brief deadline: **08:00 IST, Friday 30 October** (per the brief's logistics section). Recipient per the brief: the address in its logistics section (the address in its logistics section) — re-read the brief to confirm spelling before sending.
 
 ## A. Repository
 - [ ] Decide visibility. Brief is inconsistent: logistics = **private + collaborator access**; deliverables = "public". Safer reading: private + collaborators. (You requested public; not yet created.)
