@@ -1,0 +1,157 @@
+{
+  "frozen_at_utc": "2026-10-29T16:17:55+00:00",
+  "git_commit": "20b0ac3a0f965ecb2b7f18ff7b79a1748f5c4584",
+  "git_dirty_files": [
+    "03_experiments/freeze_record.py"
+  ],
+  "configs": {
+    "baseline": {
+      "file": "03_experiments/configs/baseline_resolved.yaml",
+      "file_sha256": "910a84b5e287f762e5fef64abd926a829a6197aa568914704749c4bf32edb216",
+      "unresolved_file_sha256": "41688219365d64e32db389ec24136f5153bd1950b88a81641d690eccc6851cb7",
+      "config_hash": "2412813f60ee38a61382ffef9003aaaf0a8cf383ff7c01d1f97acef5e8472d1e",
+      "abstention_threshold": 28.365286690602836,
+      "abstention_signal": "top1_score",
+      "contents": {
+        "name": "baseline",
+        "description": "Fixed 500-char chunks + BM25 + raw top-1-score abstention gate",
+        "chunking": {
+          "strategy": "fixed",
+          "size_chars": 500,
+          "overlap_chars": 0,
+          "min_chars": 20
+        },
+        "query": {
+          "strip_title_prefix": false
+        },
+        "routing": {
+          "mode": "none",
+          "top_docs": 1,
+          "head_chars": 3000,
+          "boost": 1.0
+        },
+        "retrieval": {
+          "method": "bm25",
+          "candidates": 100,
+          "bm25": {
+            "k1": 1.5,
+            "b": 0.75,
+            "tokenizer": {
+              "lowercase": true,
+              "stopwords": "none",
+              "stem": "none",
+              "min_token_len": 1
+            }
+          }
+        },
+        "ranking": {
+          "remove_overlaps": true,
+          "expand_chars": 0
+        },
+        "abstention": {
+          "signal": "top1_score",
+          "threshold": 28.365286690602836,
+          "target_far": 0.05
+        },
+        "evaluation": {
+          "ks": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ],
+          "primary_k": 4
+        }
+      }
+    },
+    "final": {
+      "file": "03_experiments/configs/final_resolved.yaml",
+      "file_sha256": "a13ae740d10d4c4f3591916d97664fb6ecc3f384dc477c22700c23148cb57d3c",
+      "unresolved_file_sha256": "5aa851f457ef603d3d93e134f329bd3ff3bc44ade168e076fe2b7b63e982ac1e",
+      "config_hash": "0a25f7011dad1f33c06a1446eaf793670211aa561f4c49017175a9ca51ff3056",
+      "abstention_threshold": 0.24006848213978485,
+      "abstention_signal": "top1_norm",
+      "contents": {
+        "name": "final",
+        "description": "Round-1 selection (routing + paragraph chunks + light stemming) plus round-2 gate: abstain-norm",
+        "chunking": {
+          "strategy": "paragraph",
+          "size_chars": 800,
+          "overlap_chars": 0,
+          "min_chars": 20
+        },
+        "query": {
+          "strip_title_prefix": true
+        },
+        "routing": {
+          "mode": "filter",
+          "top_docs": 1,
+          "head_chars": 3000,
+          "boost": 1.0
+        },
+        "retrieval": {
+          "method": "bm25",
+          "candidates": 100,
+          "bm25": {
+            "k1": 1.5,
+            "b": 0.75,
+            "tokenizer": {
+              "lowercase": true,
+              "stopwords": "none",
+              "stem": "light",
+              "min_token_len": 1
+            }
+          }
+        },
+        "ranking": {
+          "remove_overlaps": true,
+          "expand_chars": 0
+        },
+        "abstention": {
+          "signal": "top1_norm",
+          "threshold": 0.24006848213978485,
+          "target_far": 0.05
+        },
+        "evaluation": {
+          "ks": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ],
+          "primary_k": 4
+        }
+      }
+    }
+  },
+  "dataset": {
+    "query_manifest.jsonl": "66acc02db9ff4e34a71141e03bb947746bc45c8942a3788916eda172328f9316",
+    "gold_annotations.jsonl": "e10e355ceba4180da40e47d3a1c731399338332c69a49cf67989f25f9a6a24c6",
+    "document_manifest.jsonl": "e313fbdb8e17d2f0a399f9a2f5e29137ce187762ab91143a69693f98c8b1829f",
+    "split_manifest.json": "73554c68d48c7af35ff9e99415b7a86156f101f609c9244dfc6c4407220554ba",
+    "unanswerable_queries.jsonl": "5a860dc9a438c57c0a7976606c60c1d70021b0bf909a0ea4f40b8938dbbf2b46",
+    "source_revision": "2b9c248bc8179ef0908fd6ba01d50b156facd48b"
+  },
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "machine": "AMD64",
+    "packages": {
+      "pydantic": "2.12.5",
+      "PyYAML": "6.0.3",
+      "numpy": "2.4.3",
+      "typer": "0.24.2",
+      "streamlit": "1.66.1",
+      "huggingface_hub": "1.21.0",
+      "pytest": "9.1.1"
+    }
+  },
+  "selection_rationale": "Chosen on TRAIN only. Round 1 (15 pre-registered candidates, primary metric train recall@4): accepted title routing, paragraph-aware chunks, light stemming. Round 2 (post hoc, declared before running; gate-only candidates; primary metric train correct abstention at <=5% false abstention): accepted the normalised top-score gate. See 03_experiments/experiment_summary.md and experiment_summary_round2.md.",
+  "rules": "No configuration or threshold may be changed after this record. The test split is evaluated once per configuration."
+}
