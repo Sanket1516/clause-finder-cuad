@@ -73,6 +73,15 @@ class BM25Index:
             s[idx] += idf * tf * (k1 + 1) / (tf + norm[idx])
         return s, mass
 
+    def coverage(self, query: str, chunk_index: int) -> float:
+        """Share of the query's distinctive words (idf-weighted, only words present in the corpus) found in chunk `chunk_index`."""
+        terms = [t for t in self.query_terms(query) if t in self.idf]
+        total = sum(self.idf[t] for t in terms)
+        if total <= 0:
+            return 0.0
+        have = set(tokenize(self.chunks[chunk_index].index_text, self.cfg.tokenizer))
+        return sum(self.idf[t] for t in terms if t in have) / total
+
     def top(self, query: str, n: int) -> tuple[list[tuple[int, float]], float]:
         """Top-n (chunk_index, score) with score > 0, ordered by (-score, chunk_index). Chunks arrive pre-sorted by (doc, start)."""
         s, mass = self.scores(query)

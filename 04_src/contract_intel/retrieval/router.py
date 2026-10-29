@@ -27,6 +27,9 @@ class DocRouter:
         self.index = BM25Index(heads, bm25)
         self.heads = heads
 
-    def route(self, title: str, top_docs: int) -> list[tuple[str, float]]:
-        ranked, _ = self.index.top(title, top_docs)
-        return [(self.heads[i].doc_id, s) for i, s in ranked]
+    def route(self, title: str, top_docs: int) -> tuple[list[tuple[str, float]], float]:
+        """([(doc_id, score)], title_match). title_match = share (0-1) of the title's distinctive words (idf-weighted)
+        that occur in the best-matching contract's opening text; low values mean 'no indexed contract looks like this title'."""
+        ranked, mass = self.index.top(title, top_docs)
+        match = self.index.coverage(title, ranked[0][0]) if ranked else 0.0
+        return [(self.heads[i].doc_id, s) for i, s in ranked], match

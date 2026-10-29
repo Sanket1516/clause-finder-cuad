@@ -9,7 +9,9 @@ from ..common.config import AbstentionConfig
 from ..common.schemas import Decision, RetrievedPassage
 
 
-def confidence(signal: str, ranked: list[RetrievedPassage], query_mass: float) -> float:
+def confidence(signal: str, ranked: list[RetrievedPassage], query_mass: float, coverage: float = 0.0,
+               title_match: float = 1.0) -> float:
+    """title_match defaults to 1.0 (neutral) when the question names no contract."""
     if not ranked:
         return 0.0
     top1 = ranked[0].score
@@ -20,6 +22,14 @@ def confidence(signal: str, ranked: list[RetrievedPassage], query_mass: float) -
     if signal == "margin_norm":
         second = ranked[1].score if len(ranked) > 1 else 0.0
         return (top1 - second) / query_mass if query_mass > 0 else 0.0
+    if signal == "coverage":
+        return coverage
+    if signal == "title_match":
+        return title_match
+    if signal == "top1_norm_x_title":
+        return (top1 / query_mass if query_mass > 0 else 0.0) * title_match
+    if signal == "coverage_x_title":
+        return coverage * title_match
     raise ValueError(f"unknown abstention signal: {signal}")
 
 

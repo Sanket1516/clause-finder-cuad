@@ -44,9 +44,11 @@ class Pipeline:
         title, rest = split_title(query)
         scored_text = rest if (cfg.query.strip_title_prefix and title is not None and rest) else query
         routed: set[str] | None = None
+        title_match = 1.0  # neutral when the question names no contract
         with timed(lat, "route_ms"):
             if self.router is not None and title is not None:
-                routed = {d for d, _ in self.router.route(title, cfg.routing.top_docs)} or None
+                hits, title_match = self.router.route(title, cfg.routing.top_docs)
+                routed = {d for d, _ in hits} or None
         with timed(lat, "retrieve_ms"):
             ranked, mass = self.index.top(scored_text, len(self.chunks) if routed else cfg.retrieval.candidates)
             if routed is not None:
@@ -68,7 +70,8 @@ class Pipeline:
             if cfg.ranking.remove_overlaps:
                 cands = remove_overlaps(cands)
             cands = assign_ranks(cands)
-        conf = confidence(cfg.abstention.signal, cands, mass)
+        cov = self.index.coverage(scored_text, ranked[0][0]) if ranked else 0.0
+        conf = confidence(cfg.abstention.signal, cands, mass, cov, title_match)
         return cands, conf, lat
 
     def search(self, query: str, k: int = 5) -> SearchResponse:

@@ -64,9 +64,12 @@ class RankingConfig(_Strict):
 
 
 class AbstentionConfig(_Strict):
-    signal: Literal["top1_score", "top1_norm", "margin_norm"] = "top1_score"
+    signal: Literal["top1_score", "top1_norm", "margin_norm", "coverage", "title_match", "top1_norm_x_title", "coverage_x_title"] = "top1_score"
     threshold: Optional[float] = None  # None => must be calibrated on train before use
     target_far: float = Field(0.05, ge=0, le=1)  # calibration target: false-abstention rate on answerable train queries
+
+
+SIGNALS_NEEDING_ROUTER = {"title_match", "top1_norm_x_title", "coverage_x_title"}
 
 
 class EvaluationConfig(_Strict):
@@ -90,6 +93,12 @@ class PipelineConfig(_Strict):
     ranking: RankingConfig = RankingConfig()
     abstention: AbstentionConfig = AbstentionConfig()
     evaluation: EvaluationConfig = EvaluationConfig()
+
+    @model_validator(mode="after")
+    def _cross_checks(self):
+        if self.abstention.signal in SIGNALS_NEEDING_ROUTER and self.routing.mode == "none":
+            raise ValueError(f"abstention.signal '{self.abstention.signal}' needs routing.mode != 'none' (it uses the title match)")
+        return self
 
 
 class ConfigError(ValueError):

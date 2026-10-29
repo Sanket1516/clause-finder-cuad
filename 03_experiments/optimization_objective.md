@@ -53,3 +53,27 @@ the report will treat accepted gains as optimistic and compare against the held-
 - The pipeline receives only the question text; gold spans are used for scoring and display only.
 - The frozen unanswerable file is verified against its sha256 lock at load time.
 - Proposals use failure-label counts computed from train predictions only.
+
+---
+
+## Amendment 1: Round 2, abstention stage (declared 2026-10-29, AFTER round 1; this is explicitly post hoc)
+
+**Why this exists.** Round 1 ended with two facts on train: (a) the selected configuration abstains on only 8 of 39 unanswerables, and on
+1 of 7 never-indexed contracts (the baseline managed 7 of 7); (b) the round-1 rule could not accept gate-only changes, and the gate-only
+candidate `abstain-norm` was seen to raise correct abstention to 0.410. Round 2 is therefore **not blind**: one of its candidates has
+already been observed on train. It is declared before any further run so that its rule is fixed in advance, and the report will call it post hoc.
+
+**Scope.** Gate-only candidates (the `abstention.signal` setting). Retrieval is untouched, so ranking-view recall/precision must be
+identical to the parent; if they differ the stage aborts. Train data only; the test split is not used.
+
+**Primary metric:** correct-abstention rate on the 39 train unanswerables, with the threshold calibrated on the answerable train queries so that false abstention stays <= 5%
+(as in round 1). Unanswerable labels score the gate; they never fit it.
+
+**Guardrails:** (R1) ranking-view R@k identical to the parent for every k; (R2) no category (absent_clause, not_in_corpus, out_of_scope) may lose more than
+1 correct abstention versus the parent; (R3) false-abstention rate <= 0.05 + 1/140.
+
+**Rule:** accepted iff the gain is >= 2 queries (+2/39) and a paired bootstrap over the 39 unanswerables (B = 2000, seed 0) gives P(gain) >= 0.90 and R1-R3 hold;
+inconclusive if the gain is >= 2 queries but P(gain) < 0.90; otherwise rejected. Candidates are tried in catalogue order, each against the current parent.
+
+**Limits stated up front.** 39 unanswerables is small; 5 candidates are compared; the final report must show test correct abstention with an interval and
+must expect it to be lower than the train figure.

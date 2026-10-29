@@ -1,0 +1,24 @@
+# Round 2 (abstention stage). Declared before running; see optimization_objective.md, Amendment 1. Gate-only candidates.
+# Motivation (train, round-1 final): never-indexed contracts are answered (1/7 abstained) because routing always picks some contract and the
+# gate ignores how well the named contract matched; out-of-scope questions are answered because the best passage shares few of the question's words.
+entries:
+  - id: abstain-norm
+    targets: [correct_abstention]
+    hypothesis: Top BM25 score divided by the question's idf mass is comparable across questions of different length. (Already observed in round 1.)
+    overrides: {abstention: {signal: top1_norm}}
+  - id: abstain-coverage
+    targets: [correct_abstention]
+    hypothesis: The share of the question's distinctive words that appear in the best passage is low when the clause is not there.
+    overrides: {abstention: {signal: coverage}}
+  - id: abstain-title
+    targets: [correct_abstention]
+    hypothesis: The share of the named title's distinctive words found in the routed contract's opening is low when the contract is not indexed.
+    overrides: {abstention: {signal: title_match}}
+  - id: abstain-norm-title
+    targets: [correct_abstention]
+    hypothesis: Multiplying normalised clause score by title match catches both missing clauses and missing contracts.
+    overrides: {abstention: {signal: top1_norm_x_title}}
+  - id: abstain-coverage-title
+    targets: [correct_abstention]
+    hypothesis: Multiplying clause-word coverage by title match catches both missing clauses and missing contracts.
+    overrides: {abstention: {signal: coverage_x_title}}
