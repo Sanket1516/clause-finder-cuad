@@ -1,3 +1,5 @@
+> **Status note (added at release audit):** written *before* implementation as the plan. Where the built system differs (e.g. no dense/hybrid/reranker, no `rank_bm25`, two-round improvement process, `final_resolved.yaml`), the outcome is recorded in `decision_log.md`, `REPORT.md` and `09_submission/FINAL_AUDIT.md`. Checkboxes and statuses below are **not** updated.
+
 # Risk register
 
 L = likelihood, I = impact (H/M/L).

@@ -24,7 +24,7 @@ Append-only. Format: ID · date · decision · alternatives · rationale · stat
 |---|---|---|
 | D-OPEN-1 | Submission repo: this folder's repo (PDF ignored) or a separate clean directory? | This folder, with ignores |
 | D-OPEN-2 | Commit planning docs (`01_planning/`) to the repo? They paraphrase requirements but contain no copied text | Commit, after a phrase-level audit |
-| D-OPEN-3 | Authorise git commits (required for the unanswerable freeze evidence), and which author email to use (the repo is configured with sanketmali0909@gmail.com) | Ask at Phase 2 |
+| D-OPEN-3 | Authorise git commits (required for the unanswerable freeze evidence), and which author email to use (the repo's configured identity) | Ask at Phase 2 |
 | D-OPEN-4 | Private (logistics section) vs public (deliverables section) repo | Private + collaborator access |
 | D-OPEN-5 | Optional local LLM stretch (Ollama) — attempt at all given the time? | No; mention as future work |
 
