@@ -39,5 +39,5 @@ configuration and the number of passages.
 
 ## Tests
 ```bash
-pytest          # 161 tests in ~8 s; data-dependent tests skip if the data was not downloaded
+pytest          # 168 tests in ~8 s; data-dependent tests skip if the data was not downloaded
 ```
