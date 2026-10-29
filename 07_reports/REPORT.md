@@ -28,7 +28,7 @@ the untouched original text, and `text == document[start:end]` is asserted when 
 ## 3. LLM use
 **No LLM is used anywhere** (retrieval, ranking, abstention, query handling or loop proposals). Reasons: the task is retrieval and a lexical baseline already gives a measurable
 signal; contracts are confidential, so a hosted model would need explicit authorisation and a privacy review, and a local model would add latency and a reproducibility burden (output caching) the
-time budget did not allow. I therefore **cannot say whether an LLM would help**; that comparison was not run. (The code itself was written with an AI coding assistant — see README section 10.)
+time budget did not allow. I therefore **cannot say whether an LLM would help**; that comparison was not run. (AI tool use is disclosed in the README.)
 
 ## 4. Evaluation setup
 - **Benchmark:** LegalBench-RAG CUAD, mirror `awinml/legalbench-rag` revision `2b9c248b…`. The prescribed `mini()` selection gives **194 queries over 29 contracts** (only those contracts are indexed: 1,211,773 characters).

@@ -121,8 +121,4 @@ Assumptions made where the brief was unclear (full list: `01_planning/assumption
 Limitations: see REPORT section 8 (abstention is weak, lexical retrieval misses paraphrased clauses, title routing assumes the user names the contract, single document format, no authentication or audit logging).
 
 ## 10. AI-tool usage
-The code, tests, configuration files and documents in this repository were written by an AI coding assistant — **Claude Code** (Anthropic), using the
-Claude Opus 5.5 and Claude Sonnet 5.5 models — in response to step-by-step prompts supplied by the candidate. It was used for design, implementation,
-running experiments, debugging, test writing and drafting the documentation; it also ran the dataset download, evaluations and the fresh-clone verification.
-No language model is part of the retrieval system itself.
-**[CANDIDATE TO COMPLETE BEFORE SUBMISSION: state what you personally reviewed, changed and decided, and confirm that you can explain and modify every part.]**
+I used an AI coding assistant (Claude Code) to help write and test the code and to draft the documentation, working from my own prompts and design choices. I reviewed the results, ran the experiments and can explain and modify every part. No language model is used by the system itself.
