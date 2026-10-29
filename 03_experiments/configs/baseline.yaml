@@ -1,0 +1,32 @@
+# Baseline: the simplest reasonable end-to-end pipeline. Chosen before any measurement.
+#  - fixed 500-character windows, no overlap (the LegalBench-RAG paper's chunk size)
+#  - plain BM25 (k1=1.5, b=0.75), lowercase alphanumeric tokens, no stopwords/stemming
+#  - the whole question is the query (no title routing, no prefix stripping), no reranker
+#  - abstain when the best BM25 score is below a threshold calibrated on train so that at most 5% of answerable train queries are refused
+name: baseline
+description: Fixed 500-char chunks + BM25 + raw top-1-score abstention gate
+chunking:
+  strategy: fixed
+  size_chars: 500
+  overlap_chars: 0
+query:
+  strip_title_prefix: false
+routing:
+  mode: none
+retrieval:
+  method: bm25
+  candidates: 100
+  bm25:
+    k1: 1.5
+    b: 0.75
+    tokenizer: {lowercase: true, stopwords: none, stem: none, min_token_len: 1}
+ranking:
+  remove_overlaps: true
+  expand_chars: 0
+abstention:
+  signal: top1_score
+  threshold: null      # calibrated on train answerable queries (target_far)
+  target_far: 0.05
+evaluation:
+  ks: [1, 2, 4, 8, 16, 32, 64]
+  primary_k: 4
