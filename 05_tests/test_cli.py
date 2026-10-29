@@ -103,3 +103,13 @@ def test_evaluate_refuses_test_split_without_final_flag_and_confirmation(env):
 def test_help_documents_exit_codes_and_commands():
     r = run("--help")
     assert r.exit_code == 0 and all(c in r.output for c in ("search", "evaluate", "configs"))
+
+
+def test_test_split_guard_runs_before_any_data_is_touched(tmp_path, monkeypatch):
+    """Regression: a fresh clone without data must still get the guard message (exit 2), not a missing-data error (exit 3)."""
+    monkeypatch.setenv("CONTRACT_INTEL_DATA_DIR", str(tmp_path / "no-data-here"))
+    monkeypatch.setenv("CONTRACT_INTEL_CONFIG_DIR", str(tmp_path / "no-configs-here"))
+    r = run("evaluate", "-c", "final", "--split", "test")
+    assert r.exit_code == EXIT_INPUT and "may not be used for development" in r.output
+    r = run("evaluate", "-c", "final", "--split", "test", "--final")
+    assert r.exit_code == EXIT_INPUT and "explicit confirmation" in r.output

@@ -82,8 +82,13 @@ def main() -> None:
         "checksums_verified_against": "SHA256SUMS (mirror)",
         "note": "full mirror not downloaded; only files referenced by the 194 CUAD-mini queries",
     }
-    (ROOT / "02_data" / "acquisition_record.json").write_text(
-        json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    path = ROOT / "02_data" / "acquisition_record.json"
+    if path.exists():  # idempotent: keep the original acquisition time when nothing changed
+        old = json.loads(path.read_text(encoding="utf-8"))
+        keys = ("revision", "benchmark", "documents")
+        if {k: old.get(k) for k in keys} == {k: record[k] for k in keys}:
+            record["acquired_at_utc"] = old["acquired_at_utc"]
+    path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"OK: cuad.json + {len(files)} documents verified (revision {REVISION[:8]})")
 
 
