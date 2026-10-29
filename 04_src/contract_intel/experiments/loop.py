@@ -95,7 +95,7 @@ def run_loop(root: Path, baseline_config: Path, catalogue_path: Path, max_iterat
             log.info("baseline reproduced exactly from the committed run")
         entry = {"iteration": 0, "id": "baseline", "experiment_id": pipe.experiment_id, "parent_experiment_id": None,
                  "proposer": "human", "hypothesis": "Simplest reasonable pipeline; reference for all comparisons.",
-                 "why_tried": "required baseline", "config_path": str((d0 / "resolved_config.yaml").relative_to(root)),
+                 "why_tried": "required baseline", "config_path": str((d0 / "train_resolved_config.yaml").relative_to(root)),
                  "config_hash": pipe.config_hash, "diff": {}, "split": SPLIT, "purpose": PURPOSE, "command": command,
                  "metrics": headline(res["metrics"]), "decision": "baseline", "decision_reason": "reference configuration",
                  "delta_primary": 0.0, "bootstrap": None, "guardrails": None,

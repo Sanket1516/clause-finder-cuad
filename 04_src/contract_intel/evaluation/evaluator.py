@@ -26,12 +26,16 @@ def _iv(passages) -> list:
 
 
 def evaluate(pipeline: Pipeline, split: str, purpose: str = "development", confirm_test: bool = False,
-             queries: list[EvalQuery] | None = None, calibrate_on: list[EvalQuery] | None = None) -> dict:
+             queries: list[EvalQuery] | None = None, ledger: Path | None = None) -> dict:
     """Return {'records', 'metrics', 'resolved_config', 'errors', 'timing'}.
 
     The abstention threshold is taken from the config. If it is null it is calibrated on the ANSWERABLE queries of this run
     (train only; calibration on test is refused) and written into `resolved_config`."""
     check_split(split, purpose, confirm_test)
+    if split == "test":  # counted when the evaluation starts, whether or not results are later saved
+        n = record_test_run(pipeline.experiment_id, pipeline.config_hash, "final reporting", "(recorded at evaluation start)",
+                            *([ledger] if ledger else []))
+        log.warning("TEST SPLIT EVALUATION #%d started (recorded in the ledger)", n)
     cfg: PipelineConfig = pipeline.cfg
     ks, pk = cfg.evaluation.ks, cfg.evaluation.primary_k
     queries = queries if queries is not None else load_queries(split)
@@ -108,13 +112,13 @@ def evaluate(pipeline: Pipeline, split: str, purpose: str = "development", confi
     return {"records": records, "metrics": metrics, "resolved_config": resolved, "errors": errors}
 
 
-def save_run(result: dict, out_dir: Path, command: str, overwrite: bool = False, ledger: Path | None = None) -> dict:
+def save_run(result: dict, out_dir: Path, command: str, overwrite: bool = False) -> dict:
     """Write predictions, metrics, resolved config, run info. Refuses to overwrite earlier results unless asked."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     m = result["metrics"]
     paths = {"predictions": out_dir / f"{m['split']}_predictions.jsonl", "metrics": out_dir / f"{m['split']}_metrics.json",
-             "config": out_dir / "resolved_config.yaml", "run_info": out_dir / f"{m['split']}_run_info.json",
+             "config": out_dir / f"{m['split']}_resolved_config.yaml", "run_info": out_dir / f"{m['split']}_run_info.json",
              "errors": out_dir / f"{m['split']}_errors.log"}
     if not overwrite:
         existing = [p.name for p in paths.values() if p.exists()]
@@ -129,10 +133,6 @@ def save_run(result: dict, out_dir: Path, command: str, overwrite: bool = False,
         "python": sys.version.split()[0], "platform": platform.platform(), "machine": platform.machine(),
         "split": m["split"], "purpose": m["purpose"], "experiment_id": m["experiment_id"], "config_hash": m["config_hash"],
         "wall_seconds": m["wall_seconds"], "index_build_seconds": m["index_build_seconds"]}, indent=2) + "\n", encoding="utf-8")
-    if m["split"] == "test":
-        n = (record_test_run(m["experiment_id"], m["config_hash"], "final reporting", str(paths["metrics"]), ledger)
-             if ledger else record_test_run(m["experiment_id"], m["config_hash"], "final reporting", str(paths["metrics"])))
-        log.warning("TEST SPLIT EVALUATED (run #%d recorded in the ledger)", n)
     return {k: str(v) for k, v in paths.items()}
 
 

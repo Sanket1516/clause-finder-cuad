@@ -1,0 +1,14 @@
+{
+  "command": "python -m contract_intel evaluate --config final --split train --out-dir 03_experiments/final_eval/final",
+  "timestamp_utc": "2026-10-29T15:57:16+00:00",
+  "git_commit": "3f0ba4e5fa26fef3d8067c9fd3fba4a43be7bf1d",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "machine": "AMD64",
+  "split": "train",
+  "purpose": "development",
+  "experiment_id": "final-547ff2f3",
+  "config_hash": "547ff2f33187cc96ac6f3c8f1fe5b8973ffb821e00de909dfe71108683bc04af",
+  "wall_seconds": 0.701,
+  "index_build_seconds": 0.287
+}

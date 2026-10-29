@@ -29,3 +29,17 @@ def store(doc_ids):
 
 def jsonl(path):
     return [json.loads(l) for l in Path(path).read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
+@pytest.fixture(autouse=True)
+def _real_test_ledger_is_off_limits(monkeypatch, tmp_path_factory):
+    """Unit tests must never write to 06_results/test_runs/ledger.jsonl (it counts real held-out evaluations)."""
+    import contract_intel.evaluation.evaluator as ev
+    import contract_intel.evaluation.guard as guard
+    safe = tmp_path_factory.mktemp("ledger") / "ledger.jsonl"
+    orig = guard.record_test_run
+
+    def wrapped(experiment_id, config_hash, reason, metrics_path, ledger=None):
+        return orig(experiment_id, config_hash, reason, metrics_path, ledger or safe)
+    monkeypatch.setattr(guard, "record_test_run", wrapped)
+    monkeypatch.setattr(ev, "record_test_run", wrapped)

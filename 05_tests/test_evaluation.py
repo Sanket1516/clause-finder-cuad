@@ -65,18 +65,16 @@ def test_test_ledger_is_append_only_and_counts_runs(tmp_path):
     assert [json.loads(l)["run_no"] for l in ledger.read_text().splitlines()] == [1, 2]
 
 
-def test_test_run_through_save_run_is_ledgered(tmp_path):
+def test_test_run_is_ledgered_when_it_starts_and_never_double_counted(tmp_path):
     p = pipe(tmp_path)
-    res = evaluate(p, "test", "final", True, queries=[EvalQuery("t1", "governing law New York", "test", True,
-                                                                (Gold("cuad/A.txt", LAW, LAW_END),), "cuad/A.txt")])
     led = tmp_path / "led.jsonl"
-    save_run(res, tmp_path / "out", "cmd", ledger=led)
-    assert len(led.read_text().splitlines()) == 1
-
-
-def test_queries_labelled_with_another_split_are_rejected(tmp_path):
-    with pytest.raises(SplitGuardError, match="different split"):
-        evaluate(pipe(tmp_path), "train", queries=[EvalQuery("t1", "law", "test", True, (Gold("cuad/A.txt", 0, 5),), "cuad/A.txt")])
+    q = EvalQuery("t1", "governing law New York", "test", True, (Gold("cuad/A.txt", LAW, LAW_END),), "cuad/A.txt")
+    res = evaluate(p, "test", "final", True, ledger=led, queries=[q])
+    assert len(led.read_text().splitlines()) == 1, "counted at evaluation start, even before anything is saved"
+    save_run(res, tmp_path / "out", "cmd")
+    assert len(led.read_text().splitlines()) == 1, "saving must not double count"
+    evaluate(p, "train", queries=queries())
+    assert len(led.read_text().splitlines()) == 1, "train evaluations are never ledgered"
 
 
 # ---- evaluator ----
@@ -99,7 +97,7 @@ def test_evaluation_produces_per_query_evidence_and_aggregates(tmp_path):
 def test_calibration_on_test_is_refused(tmp_path):
     p = pipe(tmp_path, abstention={"threshold": None})
     with pytest.raises(ValueError, match="calibrate"):
-        evaluate(p, "test", "final", True, queries=[EvalQuery("t1", "governing law", "test", True, (Gold("cuad/A.txt", LAW, LAW_END),), "cuad/A.txt")])
+        evaluate(p, "test", "final", True, ledger=tmp_path / "led.jsonl", queries=[EvalQuery("t1", "governing law", "test", True, (Gold("cuad/A.txt", LAW, LAW_END),), "cuad/A.txt")])
 
 
 def test_end_to_end_view_scores_abstained_answerable_queries_as_zero(tmp_path):

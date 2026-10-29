@@ -97,7 +97,7 @@ def run_stage(root: Path, catalogue_path: Path, command: str = "", store=None, q
         save_run(parent_res, d0, command, overwrite=True)
         e0 = {"iteration": 0, "id": "round1-final", "experiment_id": parent_pipe.experiment_id, "parent_experiment_id": None,
               "proposer": "human", "hypothesis": "Round-1 selection; reference for round 2.", "why_tried": "reference",
-              "config_path": str((d0 / "resolved_config.yaml").relative_to(root)), "config_hash": parent_pipe.config_hash, "diff": {},
+              "config_path": str((d0 / "train_resolved_config.yaml").relative_to(root)), "config_hash": parent_pipe.config_hash, "diff": {},
               "split": "train", "purpose": "development", "command": command, "metrics": ph, "decision": "baseline",
               "decision_reason": "reference", "delta_primary": 0.0, "bootstrap": None, "guardrails": None,
               "category_correct_abstentions": _by_category(parent_res), "runtime_s": 0.0, "git_commit": git_commit(),
