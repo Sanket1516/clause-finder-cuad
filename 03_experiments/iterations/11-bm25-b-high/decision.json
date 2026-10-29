@@ -1,0 +1,109 @@
+{
+  "iteration": 11,
+  "id": "bm25-b-high",
+  "experiment_id": "11-bm25-b-high-0d2c5318",
+  "parent_experiment_id": "09-stem-light-89f3c1af",
+  "proposer": "rule:catalogue/bm25-b-high",
+  "hypothesis": "Higher length normalisation (b = 0.9) penalises long chunks that match by sheer length.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (68 of 84 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\11-bm25-b-high\\config.yaml",
+  "config_hash": "0d2c53182a41112630275ae8f040346b004a42972fc97e17ebe7fda9816ecc04",
+  "diff": {
+    "retrieval.bm25.b": [
+      0.75,
+      0.9
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 4.579483547507258,
+    "R@1": 0.2065751502764195,
+    "P@1": 0.11817060583378747,
+    "e2e_R@1": 0.2065751502764195,
+    "e2e_P@1": 0.11817060583378747,
+    "R@2": 0.3223125557068522,
+    "P@2": 0.10376950124467978,
+    "e2e_R@2": 0.3080268414211379,
+    "e2e_P@2": 0.10077203516251079,
+    "R@4": 0.43911825556489037,
+    "P@4": 0.0758518380003441,
+    "e2e_R@4": 0.40340396985060467,
+    "e2e_P@4": 0.07237409079542863,
+    "R@8": 0.5964083731422529,
+    "P@8": 0.055876683421224996,
+    "e2e_R@8": 0.5464083731422531,
+    "e2e_P@8": 0.052053896918827065,
+    "R@16": 0.7187045790844023,
+    "P@16": 0.03584546684994397,
+    "e2e_R@16": 0.6687045790844023,
+    "e2e_P@16": 0.03266428347468188,
+    "R@32": 0.8409078210668774,
+    "P@32": 0.024032770976351647,
+    "e2e_R@32": 0.7909078210668774,
+    "e2e_P@32": 0.021021643247994052,
+    "R@64": 0.9063015519931663,
+    "P@64": 0.01881841939944949,
+    "e2e_R@64": 0.8563015519931664,
+    "e2e_P@64": 0.015807291671091888,
+    "FAR": 0.05,
+    "CAR": 0.20512820512820512,
+    "false_answer_rate": 0.7948717948717948,
+    "AUROC": 0.628021978021978,
+    "doc_hit@1": 1.0,
+    "p95_ms": 5.324,
+    "build_s": 0.183
+  },
+  "decision": "rejected",
+  "decision_reason": "R@4 change -0.0092 is below the minimum gain 0.01",
+  "delta_primary": -0.00919491264537059,
+  "bootstrap": {
+    "mean_delta": -0.009194912645370642,
+    "p_gain": 0.094,
+    "ci95": [
+      -0.02835741037988229,
+      0.002824727946283862
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.0758518380003441,
+      "limit": 0.0677075086951779,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.20512820512820512,
+      "limit": 0.17948717948617948,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.2065751502764195,
+      "limit": 0.19371800741927667,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 5.324,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.183,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "ranked_too_low": 68,
+    "partial_span": 14,
+    "right_doc_wrong_section": 4
+  },
+  "runtime_s": 0.712,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:17+00:00",
+  "python": "3.11.9"
+}

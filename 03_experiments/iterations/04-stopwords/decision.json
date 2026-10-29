@@ -1,0 +1,110 @@
+{
+  "iteration": 4,
+  "id": "stopwords",
+  "experiment_id": "04-stopwords-bf4b16bf",
+  "parent_experiment_id": "02-route-filter-e95e19c2",
+  "proposer": "rule:catalogue/stopwords",
+  "hypothesis": "Dropping English function words reduces matches on 'this/the/under/any', which appear in every clause.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (69 of 116 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\04-stopwords\\config.yaml",
+  "config_hash": "bf4b16bf07369161759631c09e22c3c9e0ac6ba2034e5a88116a1066493c217d",
+  "diff": {
+    "retrieval.bm25.tokenizer.stopwords": [
+      "none",
+      "english"
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 2.8159945303703178,
+    "R@1": 0.15395225688516284,
+    "P@1": 0.11427142857142858,
+    "e2e_R@1": 0.15395225688516284,
+    "e2e_P@1": 0.11427142857142858,
+    "R@2": 0.2288936664228145,
+    "P@2": 0.09403355376615966,
+    "e2e_R@2": 0.22175080927995736,
+    "e2e_P@2": 0.09244069662330251,
+    "R@4": 0.2829146681065598,
+    "P@4": 0.06793386507967852,
+    "e2e_R@4": 0.2744217864178018,
+    "e2e_P@4": 0.06667553174634519,
+    "R@8": 0.38067570008909013,
+    "P@8": 0.06261700836619262,
+    "e2e_R@8": 0.365039961257475,
+    "e2e_P@8": 0.060521550374078574,
+    "R@16": 0.4502140889495847,
+    "P@16": 0.055820935537148605,
+    "e2e_R@16": 0.4345783501179696,
+    "e2e_P@16": 0.05372547754503456,
+    "R@32": 0.4863779691397099,
+    "P@32": 0.0542083646682117,
+    "e2e_R@32": 0.47074223030809476,
+    "e2e_P@32": 0.05211290667609767,
+    "R@64": 0.5028552072634304,
+    "P@64": 0.05345795756148481,
+    "e2e_R@64": 0.4872194684318153,
+    "e2e_P@64": 0.05136249956937077,
+    "FAR": 0.05,
+    "CAR": 0.2564102564102564,
+    "false_answer_rate": 0.7435897435897436,
+    "AUROC": 0.643956043956044,
+    "doc_hit@1": 0.9857142857142858,
+    "p95_ms": 1.431,
+    "build_s": 0.129
+  },
+  "decision": "rejected",
+  "decision_reason": "R@4 change -0.0257 is below the minimum gain 0.01",
+  "delta_primary": -0.025692018888210266,
+  "bootstrap": {
+    "mean_delta": -0.025692018888210322,
+    "p_gain": 0.118,
+    "ci95": [
+      -0.06560684241236886,
+      0.016290584296009568
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.06793386507967852,
+      "limit": 0.05779332694907613,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.2564102564102564,
+      "limit": 0.20512820512720514,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.15395225688516284,
+      "limit": 0.1086000726120487,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 1.431,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.129,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "ranked_too_low": 40,
+    "right_doc_wrong_section": 40,
+    "partial_span": 35,
+    "no_candidates": 2
+  },
+  "runtime_s": 0.36,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:12+00:00",
+  "python": "3.11.9"
+}

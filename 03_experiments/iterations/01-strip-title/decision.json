@@ -1,0 +1,109 @@
+{
+  "iteration": 1,
+  "id": "strip-title",
+  "experiment_id": "01-strip-title-1cb127a3",
+  "parent_experiment_id": "baseline-921dcc6f",
+  "proposer": "rule:catalogue/strip-title",
+  "hypothesis": "Scoring only the clause question (title clause removed) stops party-name tokens from pulling the cover-page chunk to the top, so clause chunks rank higher. Risk: without the title, other contracts compete, so wrong_document may rise.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (71 of 139 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\01-strip-title\\config.yaml",
+  "config_hash": "1cb127a362e679f3520df8a359b09a5dbe96d01a69118daa7ebd26905d9fd403",
+  "diff": {
+    "query.strip_title_prefix": [
+      false,
+      true
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 10.888021360060938,
+    "R@1": 0.011301989150090416,
+    "P@1": 0.0037571428571428573,
+    "e2e_R@1": 0.011301989150090416,
+    "e2e_P@1": 0.0037571428571428573,
+    "R@2": 0.027368573155914247,
+    "P@2": 0.010100000000000001,
+    "e2e_R@2": 0.027368573155914247,
+    "e2e_P@2": 0.010100000000000001,
+    "R@4": 0.04849286778634454,
+    "P@4": 0.010417857142857142,
+    "e2e_R@4": 0.04849286778634454,
+    "e2e_P@4": 0.010417857142857142,
+    "R@8": 0.06816912379989237,
+    "P@8": 0.00817857142857143,
+    "e2e_R@8": 0.06816912379989237,
+    "e2e_P@8": 0.00817857142857143,
+    "R@16": 0.1210340348722745,
+    "P@16": 0.007293750000000002,
+    "e2e_R@16": 0.1210340348722745,
+    "e2e_P@16": 0.007293750000000002,
+    "R@32": 0.17459026762844712,
+    "P@32": 0.004922767857142858,
+    "e2e_R@32": 0.17459026762844712,
+    "e2e_P@32": 0.004922767857142858,
+    "R@64": 0.2601556043391879,
+    "P@64": 0.003939149179036707,
+    "e2e_R@64": 0.2601556043391879,
+    "e2e_P@64": 0.003939149179036707,
+    "FAR": 0.0,
+    "CAR": 0.02564102564102564,
+    "false_answer_rate": 0.9743589743589743,
+    "AUROC": 0.3588827838827839,
+    "doc_hit@1": 0.05,
+    "p95_ms": 1.6929999999999998,
+    "build_s": 0.089
+  },
+  "decision": "rejected",
+  "decision_reason": "guardrail failed: G2_correct_abstention",
+  "delta_primary": 0.027215212266692625,
+  "bootstrap": {
+    "mean_delta": 0.02721521226669262,
+    "p_gain": 0.9385,
+    "ci95": [
+      -0.00604912890076788,
+      0.06292558902102989
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.010417857142857142,
+      "limit": 0.005934191527522174,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.02564102564102564,
+      "limit": 0.15384615384515385,
+      "pass": false
+    },
+    "G3_recall_at_1": {
+      "value": 0.011301989150090416,
+      "limit": -0.02,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 1.6929999999999998,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.089,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "wrong_document": 84,
+    "ranked_too_low": 44,
+    "partial_span": 9
+  },
+  "runtime_s": 0.422,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:11+00:00",
+  "python": "3.11.9"
+}

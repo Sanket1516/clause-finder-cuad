@@ -1,0 +1,14 @@
+{
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "timestamp_utc": "2026-10-29T15:43:14+00:00",
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "machine": "AMD64",
+  "split": "train",
+  "purpose": "development",
+  "experiment_id": "07-paragraph-chunks-29bfa5b3",
+  "config_hash": "29bfa5b31f3f6a17b937e6fc766acf09659c99e5d7115b2fdb0f6201a967b003",
+  "wall_seconds": 0.348,
+  "index_build_seconds": 0.112
+}

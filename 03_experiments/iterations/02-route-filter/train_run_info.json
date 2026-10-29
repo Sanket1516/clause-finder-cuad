@@ -1,0 +1,14 @@
+{
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "timestamp_utc": "2026-10-29T15:43:11+00:00",
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "machine": "AMD64",
+  "split": "train",
+  "purpose": "development",
+  "experiment_id": "02-route-filter-e95e19c2",
+  "config_hash": "e95e19c21f2e3f34f672f0c150784b3c3512d79dd3e99eeac3131c5d51accf7a",
+  "wall_seconds": 0.409,
+  "index_build_seconds": 0.114
+}

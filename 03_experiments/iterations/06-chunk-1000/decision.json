@@ -1,0 +1,109 @@
+{
+  "iteration": 6,
+  "id": "chunk-1000",
+  "experiment_id": "06-chunk-1000-2e84ac8c",
+  "parent_experiment_id": "02-route-filter-e95e19c2",
+  "proposer": "rule:catalogue/chunk-1000",
+  "hypothesis": "Longer chunks cover multi-sentence clauses fully (fewer partial spans), at some cost in precision.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (69 of 116 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\06-chunk-1000\\config.yaml",
+  "config_hash": "2e84ac8c0e08b0137fa4e9e711c72c1238ba939b694996a6933c3d733a32b92d",
+  "diff": {
+    "chunking.size_chars": [
+      500,
+      1000
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 4.077793674498398,
+    "R@1": 0.17087339195984044,
+    "P@1": 0.06903571428571428,
+    "e2e_R@1": 0.17087339195984044,
+    "e2e_P@1": 0.06903571428571428,
+    "R@2": 0.29598853860188246,
+    "P@2": 0.06704695057833858,
+    "e2e_R@2": 0.26806061067395454,
+    "e2e_P@2": 0.06303928571428571,
+    "R@4": 0.3995403015295942,
+    "P@4": 0.048884946086299695,
+    "e2e_R@4": 0.3631194919129082,
+    "e2e_P@4": 0.04499870979367539,
+    "R@8": 0.5784940954707445,
+    "P@8": 0.03670288981198125,
+    "e2e_R@8": 0.5284940954707444,
+    "e2e_P@8": 0.03315111428462838,
+    "R@16": 0.7353549752717874,
+    "P@16": 0.025340974382504284,
+    "e2e_R@16": 0.6853549752717873,
+    "e2e_P@16": 0.022192164643306384,
+    "R@32": 0.8568830023083167,
+    "P@32": 0.019121579767724006,
+    "e2e_R@32": 0.8068830023083167,
+    "e2e_P@32": 0.01599930374237949,
+    "R@64": 0.940016911913243,
+    "P@64": 0.016797878221382682,
+    "e2e_R@64": 0.8900169119132432,
+    "e2e_P@64": 0.013675602196038165,
+    "FAR": 0.05,
+    "CAR": 0.23076923076923078,
+    "false_answer_rate": 0.7692307692307693,
+    "AUROC": 0.6108058608058609,
+    "doc_hit@1": 1.0,
+    "p95_ms": 3.062,
+    "build_s": 0.113
+  },
+  "decision": "rejected",
+  "decision_reason": "guardrail failed: G1_precision",
+  "delta_primary": 0.09093361453482413,
+  "bootstrap": {
+    "mean_delta": 0.09093361453482406,
+    "p_gain": 1.0,
+    "ci95": [
+      0.04564393981228749,
+      0.13772585506478677
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.048884946086299695,
+      "limit": 0.05779332694907613,
+      "pass": false
+    },
+    "G2_correct_abstention": {
+      "value": 0.23076923076923078,
+      "limit": 0.20512820512720514,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.17087339195984044,
+      "limit": 0.1086000726120487,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 3.062,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.113,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "partial_span": 28,
+    "ranked_too_low": 67,
+    "right_doc_wrong_section": 3
+  },
+  "runtime_s": 0.536,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:14+00:00",
+  "python": "3.11.9"
+}

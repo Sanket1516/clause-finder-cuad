@@ -1,0 +1,109 @@
+{
+  "iteration": 15,
+  "id": "expand-100",
+  "experiment_id": "15-expand-100-5a91445d",
+  "parent_experiment_id": "09-stem-light-89f3c1af",
+  "proposer": "rule:catalogue/expand-100",
+  "hypothesis": "Growing each returned passage by 100 chars on both sides captures spans that straddle chunk edges.",
+  "why_tried": "most frequent train failure is 'partial_span' (12 of 84 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\15-expand-100\\config.yaml",
+  "config_hash": "5a91445d5a3a345e124337170777a62d62f7c72e26ce255729a3dadc7aa382a4",
+  "diff": {
+    "ranking.expand_chars": [
+      0,
+      100
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 4.597058599587589,
+    "R@1": 0.22519168492588781,
+    "P@1": 0.09997794640719315,
+    "e2e_R@1": 0.21804882778303067,
+    "e2e_P@1": 0.09865130023343487,
+    "R@2": 0.35295115898611834,
+    "P@2": 0.08864868788233106,
+    "e2e_R@2": 0.336262123123326,
+    "e2e_P@2": 0.08680386913433963,
+    "R@4": 0.4424410486287769,
+    "P@4": 0.05809838273502665,
+    "e2e_R@4": 0.4114662984802703,
+    "e2e_P@4": 0.055832526507415416,
+    "R@8": 0.575145040673853,
+    "P@8": 0.03985006942418819,
+    "e2e_R@8": 0.5370274333824893,
+    "e2e_P@8": 0.037810220989026914,
+    "R@16": 0.668206554551494,
+    "P@16": 0.02642828835587467,
+    "e2e_R@16": 0.6300889472601301,
+    "e2e_P@16": 0.024661865174428862,
+    "R@32": 0.7190000080062277,
+    "P@32": 0.020427929958746358,
+    "e2e_R@32": 0.6808824007148638,
+    "e2e_P@32": 0.018661506777300548,
+    "R@64": 0.7371632439362676,
+    "P@64": 0.018766953978247986,
+    "e2e_R@64": 0.6990456366449039,
+    "e2e_P@64": 0.017000530796802176,
+    "FAR": 0.05,
+    "CAR": 0.20512820512820512,
+    "false_answer_rate": 0.7948717948717948,
+    "AUROC": 0.6328754578754578,
+    "doc_hit@1": 1.0,
+    "p95_ms": 2.452,
+    "build_s": 0.159
+  },
+  "decision": "rejected",
+  "decision_reason": "guardrail failed: G1_precision",
+  "delta_primary": -0.0058721195814840366,
+  "bootstrap": {
+    "mean_delta": -0.0058721195814841025,
+    "p_gain": 0.3135,
+    "ci95": [
+      -0.030686284382052786,
+      0.01810642790703332
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.05809838273502665,
+      "limit": 0.0677075086951779,
+      "pass": false
+    },
+    "G2_correct_abstention": {
+      "value": 0.20512820512820512,
+      "limit": 0.17948717948617948,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.22519168492588781,
+      "limit": 0.19371800741927667,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 2.452,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.159,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "partial_span": 28,
+    "ranked_too_low": 54,
+    "right_doc_wrong_section": 9
+  },
+  "runtime_s": 0.631,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:19+00:00",
+  "python": "3.11.9"
+}

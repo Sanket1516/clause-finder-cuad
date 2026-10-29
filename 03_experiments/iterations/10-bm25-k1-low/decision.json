@@ -1,0 +1,109 @@
+{
+  "iteration": 10,
+  "id": "bm25-k1-low",
+  "experiment_id": "10-bm25-k1-low-5348eaef",
+  "parent_experiment_id": "09-stem-light-89f3c1af",
+  "proposer": "rule:catalogue/bm25-k1-low",
+  "hypothesis": "Lower k1 (1.0) reduces the reward for repeated terms, which favours long boilerplate chunks.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (68 of 84 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\10-bm25-k1-low\\config.yaml",
+  "config_hash": "5348eaef44c3a1fa04779ec87792bc82fb3e55836e64f67d10bd69d91538a972",
+  "diff": {
+    "retrieval.bm25.k1": [
+      1.5,
+      1.0
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 4.541561904847265,
+    "R@1": 0.24110145877235434,
+    "P@1": 0.13990502219455894,
+    "e2e_R@1": 0.23395860162949722,
+    "e2e_P@1": 0.13818989983521981,
+    "R@2": 0.32529831592733915,
+    "P@2": 0.10392167179191845,
+    "e2e_R@2": 0.31101260164162486,
+    "e2e_P@2": 0.10092420570974944,
+    "R@4": 0.44117031106740384,
+    "P@4": 0.07392839038123354,
+    "e2e_R@4": 0.40545602535311814,
+    "e2e_P@4": 0.07045064317631808,
+    "R@8": 0.5964083731422529,
+    "P@8": 0.055242530347857116,
+    "e2e_R@8": 0.5464083731422531,
+    "e2e_P@8": 0.0514722032969469,
+    "R@16": 0.7115617219415452,
+    "P@16": 0.035435628210014176,
+    "e2e_R@16": 0.6615617219415452,
+    "e2e_P@16": 0.0322544448347521,
+    "R@32": 0.8394391962337665,
+    "P@32": 0.02378820594589756,
+    "e2e_R@32": 0.7894391962337666,
+    "e2e_P@32": 0.020777078217539963,
+    "R@64": 0.9086822695309001,
+    "P@64": 0.018744732364653256,
+    "e2e_R@64": 0.8586822695309001,
+    "e2e_P@64": 0.015733604636295643,
+    "FAR": 0.05,
+    "CAR": 0.20512820512820512,
+    "false_answer_rate": 0.7948717948717948,
+    "AUROC": 0.6389194139194139,
+    "doc_hit@1": 1.0,
+    "p95_ms": 2.319,
+    "build_s": 0.164
+  },
+  "decision": "rejected",
+  "decision_reason": "R@4 change -0.0071 is below the minimum gain 0.01",
+  "delta_primary": -0.0071428571428571175,
+  "bootstrap": {
+    "mean_delta": -0.007142857142857143,
+    "p_gain": 0.1805,
+    "ci95": [
+      -0.03571428571428571,
+      0.014285714285714285
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.07392839038123354,
+      "limit": 0.0677075086951779,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.20512820512820512,
+      "limit": 0.17948717948617948,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.24110145877235434,
+      "limit": 0.19371800741927667,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 2.319,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.164,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "ranked_too_low": 69,
+    "partial_span": 12,
+    "right_doc_wrong_section": 4
+  },
+  "runtime_s": 0.535,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:16+00:00",
+  "python": "3.11.9"
+}

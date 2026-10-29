@@ -1,0 +1,109 @@
+{
+  "iteration": 12,
+  "id": "abstain-norm",
+  "experiment_id": "12-abstain-norm-547ff2f3",
+  "parent_experiment_id": "09-stem-light-89f3c1af",
+  "proposer": "rule:catalogue/abstain-norm",
+  "hypothesis": "A score normalised by the query's idf mass is comparable across questions of different length, improving separation.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (68 of 84 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\12-abstain-norm\\config.yaml",
+  "config_hash": "547ff2f33187cc96ac6f3c8f1fe5b8973ffb821e00de909dfe71108683bc04af",
+  "diff": {
+    "abstention.signal": [
+      "top1_score",
+      "top1_norm"
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 0.24006848213978485,
+    "R@1": 0.21371800741927666,
+    "P@1": 0.11988572819312654,
+    "e2e_R@1": 0.2065751502764195,
+    "e2e_P@1": 0.11817060583378747,
+    "R@2": 0.3365982699925665,
+    "P@2": 0.10892928251470867,
+    "e2e_R@2": 0.3223125557068522,
+    "e2e_P@2": 0.10546232906468223,
+    "R@4": 0.44831316821026096,
+    "P@4": 0.07523056521686433,
+    "e2e_R@4": 0.4197417396388324,
+    "e2e_P@4": 0.0719331769678773,
+    "R@8": 0.5915648609342202,
+    "P@8": 0.05612671997903663,
+    "e2e_R@8": 0.5415648609342203,
+    "e2e_P@8": 0.052469798038705266,
+    "R@16": 0.7187045790844023,
+    "P@16": 0.03565661577431806,
+    "e2e_R@16": 0.6687045790844023,
+    "e2e_P@16": 0.03334767532661189,
+    "R@32": 0.8409078210668774,
+    "P@32": 0.02400265589777618,
+    "e2e_R@32": 0.7909078210668774,
+    "e2e_P@32": 0.022015081052612455,
+    "R@64": 0.9086822695309001,
+    "P@64": 0.018785002531752953,
+    "e2e_R@64": 0.8586822695309001,
+    "e2e_P@64": 0.016797427686589223,
+    "FAR": 0.05,
+    "CAR": 0.41025641025641024,
+    "false_answer_rate": 0.5897435897435898,
+    "AUROC": 0.7365384615384616,
+    "doc_hit@1": 1.0,
+    "p95_ms": 2.4530000000000003,
+    "build_s": 0.161
+  },
+  "decision": "rejected",
+  "decision_reason": "R@4 change +0.0000 is below the minimum gain 0.01",
+  "delta_primary": 0.0,
+  "bootstrap": {
+    "mean_delta": 0.0,
+    "p_gain": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.07523056521686433,
+      "limit": 0.0677075086951779,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.41025641025641024,
+      "limit": 0.17948717948617948,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.21371800741927666,
+      "limit": 0.19371800741927667,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 2.4530000000000003,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.161,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "ranked_too_low": 68,
+    "partial_span": 12,
+    "right_doc_wrong_section": 4
+  },
+  "runtime_s": 0.559,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:17+00:00",
+  "python": "3.11.9"
+}

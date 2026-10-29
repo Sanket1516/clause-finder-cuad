@@ -1,0 +1,114 @@
+{
+  "iteration": 3,
+  "id": "route-boost",
+  "experiment_id": "03-route-boost-cc521830",
+  "parent_experiment_id": "02-route-filter-e95e19c2",
+  "proposer": "rule:catalogue/route-boost",
+  "hypothesis": "Soft routing (multiply scores of the routed contract's chunks by 3) is more robust than a hard filter when the title match is wrong.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (69 of 116 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\03-route-boost\\config.yaml",
+  "config_hash": "cc52183017908a5d06482ade87492743c59c295f53144757a871b0788f5b58a7",
+  "diff": {
+    "routing.boost": [
+      1.0,
+      2.0
+    ],
+    "routing.mode": [
+      "filter",
+      "boost"
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 15.138010657765532,
+    "R@1": 0.11431435832633444,
+    "P@1": 0.08301428571428572,
+    "e2e_R@1": 0.11431435832633444,
+    "e2e_P@1": 0.08301428571428572,
+    "R@2": 0.21419707836994092,
+    "P@2": 0.08772142857142858,
+    "e2e_R@2": 0.20705422122708378,
+    "e2e_P@2": 0.08612857142857143,
+    "R@4": 0.2883803349394482,
+    "P@4": 0.061103571428571424,
+    "e2e_R@4": 0.27409462065373397,
+    "e2e_P@4": 0.058910714285714275,
+    "R@8": 0.36641029799571717,
+    "P@8": 0.0412586073076078,
+    "e2e_R@8": 0.3442134119779548,
+    "e2e_P@8": 0.03918035714285712,
+    "R@16": 0.4285969697010076,
+    "P@16": 0.02673264386050547,
+    "e2e_R@16": 0.3992572265403881,
+    "e2e_P@16": 0.02562295711754709,
+    "R@32": 0.5090860294672662,
+    "P@32": 0.015339782417249969,
+    "e2e_R@32": 0.4797462863066468,
+    "e2e_P@32": 0.014786028116353406,
+    "R@64": 0.5874201108298811,
+    "P@64": 0.00902426882320955,
+    "e2e_R@64": 0.5509375105264045,
+    "e2e_P@64": 0.008685773860350838,
+    "FAR": 0.05,
+    "CAR": 0.10256410256410256,
+    "false_answer_rate": 0.8974358974358975,
+    "AUROC": 0.6154761904761905,
+    "doc_hit@1": 0.9428571428571428,
+    "p95_ms": 3.718,
+    "build_s": 0.096
+  },
+  "decision": "rejected",
+  "decision_reason": "guardrail failed: G2_correct_abstention",
+  "delta_primary": -0.02022635205532186,
+  "bootstrap": {
+    "mean_delta": -0.020226352055321868,
+    "p_gain": 0.0,
+    "ci95": [
+      -0.042967129779041074,
+      -0.0013500245459008345
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.061103571428571424,
+      "limit": 0.05779332694907613,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.10256410256410256,
+      "limit": 0.20512820512720514,
+      "pass": false
+    },
+    "G3_recall_at_1": {
+      "value": 0.11431435832633444,
+      "limit": 0.1086000726120487,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 3.718,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.096,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "ranked_too_low": 54,
+    "right_doc_wrong_section": 22,
+    "partial_span": 37,
+    "wrong_document": 4
+  },
+  "runtime_s": 0.667,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:12+00:00",
+  "python": "3.11.9"
+}

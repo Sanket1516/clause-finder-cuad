@@ -166,9 +166,10 @@ def write_outputs(root: Path, entries: list[dict], base_cfg: PipelineConfig, sto
     best_cfg = load_config(root / best["config_path"]) if best["iteration"] else base_cfg
     # final configuration (unresolved: threshold calibrated on train) + frozen resolved twin used by search/web/test
     pipe, res = _run(best_cfg, store, queries)
-    final = best_cfg.model_copy(update={"name": "final"})
-    dump_config(final, exp / "configs" / "final.yaml")
-    dump_config(res["resolved_config"].model_copy(update={"name": "final"}), exp / "configs" / "final_resolved.yaml")
+    seq = [e["id"] for e in entries[1:] if e["decision"] == "accepted"]
+    desc = f"Best configuration on TRAIN under the declared rule; baseline + accepted changes: {', '.join(seq) or 'none'}"
+    dump_config(best_cfg.model_copy(update={"name": "final", "description": desc}), exp / "configs" / "final.yaml")
+    dump_config(res["resolved_config"].model_copy(update={"name": "final", "description": desc}), exp / "configs" / "final_resolved.yaml")
 
     pk = base_cfg.evaluation.primary_k
     ks = base_cfg.evaluation.ks

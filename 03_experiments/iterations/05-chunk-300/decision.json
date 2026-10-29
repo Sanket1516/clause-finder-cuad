@@ -1,0 +1,109 @@
+{
+  "iteration": 5,
+  "id": "chunk-300",
+  "experiment_id": "05-chunk-300-ffa77dd4",
+  "parent_experiment_id": "02-route-filter-e95e19c2",
+  "proposer": "rule:catalogue/chunk-300",
+  "hypothesis": "Gold spans have a median near 300 chars; 300-char chunks raise precision and make ranking more selective.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (69 of 116 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\05-chunk-300\\config.yaml",
+  "config_hash": "ffa77dd465045a1e39acf9a2b066633b95b85d4195fba27b506200f8d956f833",
+  "diff": {
+    "chunking.size_chars": [
+      500,
+      300
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 5.486071859513419,
+    "R@1": 0.11785431662853055,
+    "P@1": 0.14102380952380952,
+    "e2e_R@1": 0.11785431662853055,
+    "e2e_P@1": 0.14102380952380952,
+    "R@2": 0.17592415333231293,
+    "P@2": 0.11579761904761904,
+    "e2e_R@2": 0.17592415333231293,
+    "e2e_P@2": 0.11579761904761904,
+    "R@4": 0.2496614422985075,
+    "P@4": 0.08320640861134869,
+    "e2e_R@4": 0.23531585388687962,
+    "e2e_P@4": 0.07925595238095234,
+    "R@8": 0.32781165078528257,
+    "P@8": 0.05939249577093792,
+    "e2e_R@8": 0.30722987224542947,
+    "e2e_P@8": 0.05654614043069456,
+    "R@16": 0.40968485847097924,
+    "P@16": 0.040534644688621335,
+    "e2e_R@16": 0.38910307993112625,
+    "e2e_P@16": 0.03833561077694942,
+    "R@32": 0.5232541218696559,
+    "P@32": 0.02588234363055961,
+    "e2e_R@32": 0.5026723433298029,
+    "e2e_P@32": 0.02387708792461442,
+    "R@64": 0.6800692090692168,
+    "P@64": 0.020219011451926863,
+    "e2e_R@64": 0.6466163684735188,
+    "e2e_P@64": 0.018038568534000106,
+    "FAR": 0.05,
+    "CAR": 0.23076923076923078,
+    "false_answer_rate": 0.7692307692307693,
+    "AUROC": 0.6136446886446887,
+    "doc_hit@1": 1.0,
+    "p95_ms": 5.554,
+    "build_s": 0.078
+  },
+  "decision": "rejected",
+  "decision_reason": "R@4 change -0.0589 is below the minimum gain 0.01",
+  "delta_primary": -0.058945244696262555,
+  "bootstrap": {
+    "mean_delta": -0.058945244696262576,
+    "p_gain": 0.0,
+    "ci95": [
+      -0.08807655758323861,
+      -0.030297868682339135
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.08320640861134869,
+      "limit": 0.05779332694907613,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.23076923076923078,
+      "limit": 0.20512820512720514,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.11785431662853055,
+      "limit": 0.1086000726120487,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 5.554,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.078,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "partial_span": 47,
+    "ranked_too_low": 66,
+    "right_doc_wrong_section": 12
+  },
+  "runtime_s": 0.746,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:13+00:00",
+  "python": "3.11.9"
+}

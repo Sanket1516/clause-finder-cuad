@@ -1,0 +1,149 @@
+{
+  "experiment_id": "03-route-boost-cc521830",
+  "config_hash": "cc52183017908a5d06482ade87492743c59c295f53144757a871b0788f5b58a7",
+  "split": "train",
+  "purpose": "development",
+  "n_queries": 179,
+  "n_answerable": 140,
+  "n_unanswerable": 39,
+  "threshold": 15.138010657765532,
+  "primary_k": 4,
+  "retrieval_ranking_view": {
+    "1": {
+      "precision": 0.08301428571428572,
+      "recall": 0.11431435832633444,
+      "n": 140
+    },
+    "2": {
+      "precision": 0.08772142857142858,
+      "recall": 0.21419707836994092,
+      "n": 140
+    },
+    "4": {
+      "precision": 0.061103571428571424,
+      "recall": 0.2883803349394482,
+      "n": 140
+    },
+    "8": {
+      "precision": 0.0412586073076078,
+      "recall": 0.36641029799571717,
+      "n": 140
+    },
+    "16": {
+      "precision": 0.02673264386050547,
+      "recall": 0.4285969697010076,
+      "n": 140
+    },
+    "32": {
+      "precision": 0.015339782417249969,
+      "recall": 0.5090860294672662,
+      "n": 140
+    },
+    "64": {
+      "precision": 0.00902426882320955,
+      "recall": 0.5874201108298811,
+      "n": 140
+    }
+  },
+  "retrieval_end_to_end": {
+    "1": {
+      "precision": 0.08301428571428572,
+      "recall": 0.11431435832633444,
+      "n": 140
+    },
+    "2": {
+      "precision": 0.08612857142857143,
+      "recall": 0.20705422122708378,
+      "n": 140
+    },
+    "4": {
+      "precision": 0.058910714285714275,
+      "recall": 0.27409462065373397,
+      "n": 140
+    },
+    "8": {
+      "precision": 0.03918035714285712,
+      "recall": 0.3442134119779548,
+      "n": 140
+    },
+    "16": {
+      "precision": 0.02562295711754709,
+      "recall": 0.3992572265403881,
+      "n": 140
+    },
+    "32": {
+      "precision": 0.014786028116353406,
+      "recall": 0.4797462863066468,
+      "n": 140
+    },
+    "64": {
+      "precision": 0.008685773860350838,
+      "recall": 0.5509375105264045,
+      "n": 140
+    }
+  },
+  "abstention": {
+    "confusion": {
+      "answerable_answered_TP": 133,
+      "answerable_abstained_FN": 7,
+      "unanswerable_answered_FP": 35,
+      "unanswerable_abstained_TN": 4
+    },
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "false_abstention_rate": 0.05,
+    "correct_abstention_rate": 0.10256410256410256,
+    "false_answer_rate": 0.8974358974358975,
+    "answer_decision": {
+      "precision": 0.7916666666666666,
+      "recall": 0.95,
+      "f1": 0.8636363636363635
+    },
+    "abstain_decision": {
+      "precision": 0.36363636363636365,
+      "recall": 0.10256410256410256,
+      "f1": 0.16
+    }
+  },
+  "confidence_auroc_answerable_vs_unanswerable": 0.6154761904761905,
+  "label_counts_answerable": {
+    "hit": 23,
+    "ranked_too_low": 54,
+    "right_doc_wrong_section": 22,
+    "partial_span": 37,
+    "wrong_document": 4
+  },
+  "e2e_label_counts": {
+    "false_abstention": 7,
+    "ranked_too_low": 50,
+    "right_doc_wrong_section": 22,
+    "hit": 21,
+    "partial_span": 37,
+    "wrong_document": 3,
+    "false_answer": 35,
+    "correct_abstention": 4
+  },
+  "unanswerable_by_category": {
+    "absent_clause": {
+      "n": 26,
+      "correct_abstentions": 4
+    },
+    "not_in_corpus": {
+      "n": 7,
+      "correct_abstentions": 0
+    },
+    "out_of_scope": {
+      "n": 6,
+      "correct_abstentions": 0
+    }
+  },
+  "document_hit_at_1": 0.9428571428571428,
+  "offset_integrity_failures": 0,
+  "latency_ms": {
+    "p50": 2.206,
+    "p95": 3.718
+  },
+  "index_build_seconds": 0.096,
+  "n_chunks": 2437,
+  "wall_seconds": 0.509
+}

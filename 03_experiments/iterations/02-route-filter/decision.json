@@ -1,0 +1,113 @@
+{
+  "iteration": 2,
+  "id": "route-filter",
+  "experiment_id": "02-route-filter-e95e19c2",
+  "parent_experiment_id": "baseline-921dcc6f",
+  "proposer": "rule:catalogue/route-filter",
+  "hypothesis": "Use the title only to choose the contract (BM25 over each contract's opening 3000 chars), then rank clause chunks inside that contract only. Separates 'which contract' from 'which clause', which the baseline conflates.",
+  "why_tried": "most frequent train failure is 'ranked_too_low' (71 of 139 failing queries); entry targets it",
+  "config_path": "03_experiments\\iterations\\02-route-filter\\config.yaml",
+  "config_hash": "e95e19c21f2e3f34f672f0c150784b3c3512d79dd3e99eeac3131c5d51accf7a",
+  "diff": {
+    "query.strip_title_prefix": [
+      false,
+      true
+    ],
+    "routing.mode": [
+      "none",
+      "filter"
+    ]
+  },
+  "split": "train",
+  "purpose": "development",
+  "command": "python 03_experiments/run_improvement_loop.py --max-iterations 20",
+  "metrics": {
+    "n_answerable": 140,
+    "n_unanswerable": 39,
+    "threshold": 4.599484980318158,
+    "R@1": 0.1286000726120487,
+    "P@1": 0.09094285714285714,
+    "e2e_R@1": 0.12145721546919155,
+    "e2e_P@1": 0.08535714285714285,
+    "R@2": 0.22133993551279801,
+    "P@2": 0.09081772252138107,
+    "e2e_R@2": 0.20705422122708378,
+    "e2e_P@2": 0.08612857142857143,
+    "R@4": 0.30860668699477006,
+    "P@4": 0.0642148077211957,
+    "e2e_R@4": 0.2806787590668422,
+    "e2e_P@4": 0.06020714285714285,
+    "R@8": 0.3962020472759572,
+    "P@8": 0.04470753516236673,
+    "e2e_R@8": 0.36701075686017703,
+    "e2e_P@8": 0.04178379886974243,
+    "R@16": 0.528625080568332,
+    "P@16": 0.03208016840882485,
+    "e2e_R@16": 0.4916474323661941,
+    "e2e_P@16": 0.029459561719728772,
+    "R@32": 0.6969153965727959,
+    "P@32": 0.02230997886406591,
+    "e2e_R@32": 0.6527948912278007,
+    "e2e_P@32": 0.019886493195104007,
+    "R@64": 0.8093069309360749,
+    "P@64": 0.01801861447266497,
+    "e2e_R@64": 0.7651864255910797,
+    "e2e_P@64": 0.015627792208256296,
+    "FAR": 0.05,
+    "CAR": 0.23076923076923078,
+    "false_answer_rate": 0.7692307692307693,
+    "AUROC": 0.639102564102564,
+    "doc_hit@1": 1.0,
+    "p95_ms": 3.7380000000000004,
+    "build_s": 0.114
+  },
+  "decision": "accepted",
+  "decision_reason": "R@4 +0.2873 >= 0.01 and P(gain)=1.000 >= 0.9; all guardrails pass",
+  "delta_primary": 0.2873290314751181,
+  "bootstrap": {
+    "mean_delta": 0.28732903147511824,
+    "p_gain": 1.0,
+    "ci95": [
+      0.22070295211292593,
+      0.35683412325520236
+    ],
+    "B": 2000,
+    "seed": 0
+  },
+  "guardrails": {
+    "G1_precision": {
+      "value": 0.0642148077211957,
+      "limit": 0.005934191527522174,
+      "pass": true
+    },
+    "G2_correct_abstention": {
+      "value": 0.23076923076923078,
+      "limit": 0.15384615384515385,
+      "pass": true
+    },
+    "G3_recall_at_1": {
+      "value": 0.1286000726120487,
+      "limit": -0.02,
+      "pass": true
+    },
+    "G4_p95_latency_ms": {
+      "value": 3.7380000000000004,
+      "limit": 2000.0,
+      "pass": true
+    },
+    "G5_build_seconds": {
+      "value": 0.114,
+      "limit": 900.0,
+      "pass": true
+    }
+  },
+  "failure_labels": {
+    "ranked_too_low": 69,
+    "partial_span": 41,
+    "right_doc_wrong_section": 6
+  },
+  "runtime_s": 0.597,
+  "git_commit": "33a06e38323873e967752bfbabe435cd4c01c8f0",
+  "timestamp_utc": "2026-10-29T15:43:11+00:00",
+  "python": "3.11.9"
+}
