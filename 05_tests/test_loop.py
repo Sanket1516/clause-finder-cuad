@@ -38,12 +38,9 @@ def test_accept_requires_min_gain_and_confidence():
 
 def test_small_gain_is_rejected_and_unconvincing_gain_is_inconclusive():
     assert acc.decide(H(), H(**{"R@4": 0.205}), [0.0] * 10, [0.005] * 10, 4, 39)["decision"] == "rejected"
-    noisy_parent = [0.0] * 98 + [1.0, 0.0]
-    noisy_cand = [0.0] * 98 + [0.0, 1.0]
-    cand_better = [0.0] * 99 + [1.0]
-    d = acc.decide(H(), H(**{"R@4": 0.22}), noisy_parent, cand_better, 4, 39)
-    assert d["decision"] in ("inconclusive", "rejected") and d["decision"] != "accepted" or d["bootstrap"]["p_gain"] >= 0.9
-    assert acc.decide(H(), H(**{"R@4": 0.22}), [0.3, 0.1] * 5, [0.1, 0.3] * 5, 4, 39)["decision"] == "inconclusive"
+    # headline gain is +0.02 (>= 0.01) but the per-query differences are symmetric noise -> promising, not proven
+    d = acc.decide(H(), H(**{"R@4": 0.22}), [0.3, 0.1] * 5, [0.1, 0.3] * 5, 4, 39)
+    assert d["decision"] == "inconclusive" and d["bootstrap"]["p_gain"] < 0.9
 
 
 @pytest.mark.parametrize("override,guard", [
