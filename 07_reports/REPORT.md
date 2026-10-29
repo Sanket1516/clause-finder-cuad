@@ -34,7 +34,7 @@ time budget did not allow. I therefore **cannot say whether an LLM would help**;
 - **Benchmark:** LegalBench-RAG CUAD, mirror `awinml/legalbench-rag` revision `2b9c248b…`. The prescribed `mini()` selection gives **194 queries over 29 contracts** (only those contracts are indexed: 1,211,773 characters).
   Offset check: **272/272** gold snippets satisfy `document[start:end] == answer`; no missing documents or overlapping gold spans (`dataset_validation.json`).
 - **Split:** the prescribed `assign_split` (SHA-256 of the stripped query, mod 10 < 3 = test): benchmark **train 140 / test 54**.
-- **Unanswerable set:** 49 queries written before any retrieval code existed, committed once (`b1f3e64`) and never edited (sha256 lock, regression test). Same split function: **train 39 / test 10**.
+- **Unanswerable set:** 49 queries written before any retrieval code existed, committed once (`389c644`) and never edited (sha256 lock, regression test). Same split function: **train 39 / test 10**.
   Categories (train/test): clause absent from an indexed contract 26/7, contract not in the corpus 7/1, outside a contract's scope 6/2. Absence was checked by keyword patterns with zero hits in the target
   contract (whole corpus for invented contracts); only two contracts were read in full, so a paraphrased answer could have been missed.
 - **Retrieval metrics** (authors' definition): precision@k = overlapping characters / all returned characters (wrong-document text counts against precision), recall@k = overlapping / gold characters, macro-averaged

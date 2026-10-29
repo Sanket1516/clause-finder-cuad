@@ -20,9 +20,9 @@ Ordered by how much they matter for the submission. None of them changes a repor
 ## Engineering
 10. Verified only on **Windows 11 / Python 3.11.9**. Python 3.10 (declared minimum) and Linux/macOS are not verified.
 11. The web app was exercised headlessly and via a health check, **never viewed in a browser** — check the layout before the demo.
-12. `experiment_log*.jsonl` `config_path` strings were edited after the first commit (file-name change); decisions/metrics unchanged (verified by a from-scratch rerun). `final_freeze.json` records commit `20b0ac3a`, the commit *before* the freeze commit `de28438` (it was written from an uncommitted working tree).
+12. `experiment_log*.jsonl` `config_path` strings were edited after the first commit (file-name change); decisions/metrics unchanged (verified by a from-scratch rerun). `final_freeze.json` records commit `20b0ac3a`, the commit *before* the freeze commit `2fdd7f0` (it was written from an uncommitted working tree).
 13. Prediction files are duplicated across `03_experiments/iterations`, `final_eval` and `06_results/final` (~2 MB each); harmless (repo ~7 MB).
 14. Several planning documents under `01_planning/` describe a plan that differs from what was built (dense/hybrid/reranker, `rank_bm25`, clause-type resolution); they carry a status note.
 15. Not implemented: dense/hybrid retrieval, reranking, LLM use, cross-reference and definition resolution, multi-document answers, authentication/audit logging.
 16. `iteration 14` (overlap) was a no-op in context; `iterations 12-13` only touch the gate. They remain in the log.
-17. Commit `7662e7f` has a message describing fixes that arrived in `2656e76`; history was not rewritten.
+17. Commit `e05da87` has a message describing fixes that arrived in `fd57f27`; history was not rewritten.

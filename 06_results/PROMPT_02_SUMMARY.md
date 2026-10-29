@@ -10,7 +10,7 @@
 - Prescribed `assign_split`: benchmark **train 140 / test 54**.
 - **49 unanswerable queries** (33 absent_clause / 8 not_in_corpus / 8 out_of_scope), split with the same function: **train 39 / test 10**.
   By category (train/test): absent_clause 26/7, not_in_corpus 7/1, out_of_scope 6/2.
-- Frozen with a sha256 lock (`02_data/unanswerable_queries.sha256`) and committed in `b1f3e64`, before any retrieval code or metric existed.
+- Frozen with a sha256 lock (`02_data/unanswerable_queries.sha256`) and committed in `389c644`, before any retrieval code or metric existed.
 - Manifests: `query_manifest.jsonl` (inference-safe fields only), `gold_annotations.jsonl` (evaluation only), `document_manifest.jsonl`,
   `split_manifest.json`. `06_results/dataset_integrity_report.md` has the details.
 

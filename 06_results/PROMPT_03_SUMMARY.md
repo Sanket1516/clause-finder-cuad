@@ -44,6 +44,6 @@ Abstention at threshold 28.37: false abstention 6/140 (4.3%); correct abstention
 serialisation, inference isolation). Full suite at this stage: 99 passed; no failures to report.
 
 ## Notes
-- The baseline run's recorded commit (`961aa36`) predates the commit that added the engine code; the code was unchanged between the run and that commit.
+- The baseline run's recorded commit (`26e9701`) predates the commit that added the engine code; the code was unchanged between the run and that commit.
 - The baseline is deliberately naive: the whole question is the query. Its failure (the top passage is almost always a contract's cover
   page) is analysed in `baseline_failure_analysis.md` and motivated the loop's first candidates.

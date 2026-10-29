@@ -6,7 +6,7 @@
 | 194-query selection followed | `mini()` verbatim; 194 queries, 29 contracts; `test_selection_is_194_and_repeatable` | PASS |
 | Split function correct | `test_assign_split_*`, `test_mini_matches_reference_definition`; manifests recomputed in a fresh clone | PASS |
 | >= 30 unanswerables | 49 (39 train / 10 test) | PASS |
-| Unanswerable set committed before the loop | file added once, in `b1f3e64` (21:00); first experiment log commit `448b0b8` (21:14); sha256 `5a860dc9…` unchanged at HEAD | PASS |
+| Unanswerable set committed before the loop | file added once, in `389c644` (21:00); first experiment log commit `d571bba` (21:14); sha256 `5a860dc9…` unchanged at HEAD | PASS |
 | >= 5 iterations beyond baseline | 15 (round 1) + 5 (round 2, post hoc) | PASS |
 | Final config selected on train only | loop calls `evaluate(..., "development")`, guard rejects any other use; no test artifact existed before the freeze | PASS |
 | No gold at inference | `Pipeline.search(query, k)` signature test; source-scan test | PASS |
@@ -17,7 +17,7 @@ Disclosed caveat: round 2 (abstention gate) is **post hoc** — one of its candi
 ## 2. Freeze
 `03_experiments/configs/final.yaml` (+ `final_resolved.yaml` with the frozen threshold 0.2401) and `baseline*.yaml`; checksums, commit,
 environment, dataset hashes and rationale are in `03_experiments/configs/final_freeze.json` (frozen 2026-10-29T16:17:55Z, commit `20b0ac3a`);
-freeze commit `de28438`, tag `final-frozen`. Nothing was changed after the test run.
+freeze commit `2fdd7f0`, tag `final-frozen`. Nothing was changed after the test run.
 Final config: title routing (filter, top 1 contract) -> question without its title clause -> paragraph-aware chunks (<= 800 chars) -> BM25 with light stemming
 -> overlap removal -> gate on top BM25 score / question idf mass >= 0.2401.
 

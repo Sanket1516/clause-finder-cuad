@@ -15,7 +15,7 @@ Brief deadline: **08:00 IST, Friday 30 October** (per the brief's logistics sect
 - [x] Source: `04_src/`; configs: `03_experiments/configs/` (`baseline.yaml`, `final.yaml`, `final_resolved.yaml`, `final_freeze.json`)
 - [x] Dataset preparation instructions and scripts: `02_data/`
 - [x] Experiment logs: `03_experiments/experiment_log.jsonl`, `experiment_log_round2.jsonl`, summaries
-- [x] Frozen unanswerable queries: `02_data/unanswerable_queries.jsonl` (+ sha256 lock; committed once, `b1f3e64`)
+- [x] Frozen unanswerable queries: `02_data/unanswerable_queries.jsonl` (+ sha256 lock; committed once, `389c644`)
 - [x] Tests: `05_tests/` (168 pass)
 - [x] Final evaluation artifacts: `06_results/final/`, `06_results/final_comparison.*`, `03_experiments/final_eval/`
 - [ ] **README section 10: replace the placeholder with your own account of what you reviewed/decided.**

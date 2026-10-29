@@ -1,6 +1,6 @@
 # Prompt 05 summary: evidence-driven improvement loop (train only)
 
-## Setup before the first experiment (committed in `a9ee951`, loop code in `42b51a5`)
+## Setup before the first experiment (committed in `184bd1b`, loop code in `3f69021`)
 - `03_experiments/optimization_objective.md`: primary metric = train ranking-view **character recall@4** (n = 140); guardrails G1-G5; accept iff
   ΔR@4 ≥ +0.010 and paired-bootstrap P(gain) ≥ 0.90 and all guardrails pass; inconclusive / rejected otherwise; ties keep the simpler parent.
 - `03_experiments/proposals/catalogue.yaml`: 15 candidates, written from the baseline's train failure pattern, ordered by target failure label.

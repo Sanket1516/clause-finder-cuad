@@ -1,6 +1,6 @@
 # Final audit
 
-Audit date: 2026-10-29 (IST evening). Repository HEAD at audit start: `9859d2b`. Auditor: the same AI assistant that built the project, so this is **self-review, not independent review**;
+Audit date: 2026-10-29 (IST evening). Repository HEAD at audit start: `7b68972`. Auditor: the same AI assistant that built the project, so this is **self-review, not independent review**;
 where a check needs a human or an external action it is marked NOT VERIFIED. The assessment document is not in this repository; requirement IDs (R-xx) come from a private, git-ignored catalogue
 and are described in words here. Status: PASS = executed or inspected with evidence; PARTIAL; FAIL; NOT VERIFIED.
 
@@ -23,7 +23,7 @@ and are described in words here. Status: PASS = executed or inspected with evide
 | R-14/R-17 | Prescribed split, also for unanswerables | `test_assign_split_*`; manifests | benchmark 140/54; unanswerable 39/10 | PASS | — |
 | R-15 | Tune on train only; count test runs | `evaluation/guard.py`, ledger, `test_evaluation.py`, `test_cli.py` | guard enforced; **4 test evaluations started, 2 recorded, 2 earlier aborted/unseen** (PROMPT_07_SUMMARY s4) | PASS (with disclosure) | — |
 | R-16/R-44 | >= 30 labelled unanswerables in repo | `validate_unanswerable.py`, `test_unanswerable_*` | 49 | PASS | — |
-| R-18 | Committed before the loop, never edited | `git log -- 02_data/unanswerable_queries.jsonl`; sha256 lock test | one commit `b1f3e64` (21:00); first experiment commit `448b0b8` (21:14) | PASS | — |
+| R-18 | Committed before the loop, never edited | `git log -- 02_data/unanswerable_queries.jsonl`; sha256 lock test | one commit `389c644` (21:00); first experiment commit `d571bba` (21:14) | PASS | — |
 | R-19 | Report unanswerable counts per split | REPORT s4 | 39 / 10 | PASS | — |
 | R-22 | Web app | `test_application.py` (headless Streamlit), real server health 200 | works; **layout never inspected in a browser** | PASS (functional) | look at it before the demo |
 | R-23 | CLI | `test_cli.py`; exit codes checked in fresh clone | works | PASS | — |
@@ -35,7 +35,7 @@ and are described in words here. Status: PASS = executed or inspected with evide
 | R-31 | Char P/R at several k, train and test | `evaluation/metrics.py`, `test_metrics.py` (hand cases + port of authors' formula) | k = 1..64 reported with n | PASS | — |
 | R-32 | Abstention in both directions | metrics + REPORT s5 | reported with denominators | PASS | — |
 | R-33 | Baseline recorded | `03_experiments/baseline/`, iteration 0 | train and test metrics saved | PASS | — |
-| R-34 | Objective declared before iterating | `03_experiments/optimization_objective.md` commit `a9ee951` precedes `448b0b8` | **round 2 was declared after seeing one result (post hoc), disclosed** | PASS (with disclosure) | — |
+| R-34 | Objective declared before iterating | `03_experiments/optimization_objective.md` commit `184bd1b` precedes `d571bba` | **round 2 was declared after seeing one result (post hoc), disclosed** | PASS (with disclosure) | — |
 | R-35 | One-command loop | `python 03_experiments/run_improvement_loop.py` (fresh clone, `--restart`) | 13 s; reproduced all decisions | PASS | — |
 | R-36/R-37 | Every iteration logged; >= 5 | `experiment_log.jsonl` (16 lines), `experiment_log_round2.jsonl` (6) | hypothesis, proposer, metrics, decision per line | PASS | — |
 | R-38 | Loop train-only; no gold at inference | `test_inference_modules_never_reference_gold_annotations`, signature test, guard tests | enforced in code and tests | PASS | — |
@@ -61,7 +61,7 @@ Fresh-clone run **before** data download (first attempt): 158 passed, 8 skipped 
 | 2 | Re-running the download rewrote `acquisition_record.json` (new timestamp) | fresh clone `git status` | idempotent write; true timestamp restored | none |
 | 3 | Unit tests wrote 2 entries to the real test ledger | ledger inspection | autouse fixture redirects test writes; entries annotated, not deleted (`ledger_notes.md`) | none (not real test runs) |
 | 4 | Test-run counting happened only at save time, so two aborted attempts were not counted | review of the first test attempt | count at evaluation start; disclosed | none |
-| 5 | A commit message (`7662e7f`) claimed fixes it did not contain; the follow-up commit `2656e76` completed them | self-review | follow-up commit states this; history not rewritten | none |
+| 5 | A commit message (`e05da87`) claimed fixes it did not contain; the follow-up commit `fd57f27` completed them | self-review | follow-up commit states this; history not rewritten | none |
 | 6 | `experiment_log*.jsonl` `config_path` values were edited after commit (`resolved_config.yaml` -> `train_resolved_config.yaml`) when output files were renamed | self-review | path rename only; metrics/decisions unchanged, verified by the from-scratch rerun | none |
 
 None of the fixes touched retrieval, chunking, metrics or the gate, so **the frozen configuration and the test results are unaffected, and the test evaluation does not need repeating**. Proof: in the fresh clone (at a later commit) the saved test metrics reproduced exactly.
