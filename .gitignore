@@ -1,0 +1,32 @@
+# --- Confidential assessment material: never commit ---
+*.pdf
+00_assessment/
+
+# --- Downloaded data (re-fetched by the download script; public, but large) ---
+02_data/raw/*
+!02_data/raw/.gitkeep
+
+# --- Secrets ---
+.env
+.env.*
+*.key
+secrets*
+
+# --- Caches that are regenerable and large ---
+03_experiments/cache/embeddings/*
+!03_experiments/cache/embeddings/.gitkeep
+# NOTE: 03_experiments/cache/llm/ is intentionally NOT ignored (LLM outputs must be cached for reproducibility)
+
+# --- Python / tooling ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+.DS_Store
+Thumbs.db

@@ -1,0 +1,24 @@
+[project]
+name = "contract-intel"
+version = "0.1.0"
+description = "Clause search over contracts (LegalBench-RAG CUAD-mini) with measured retrieval and abstention"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.5",
+    "PyYAML>=6.0",
+    "numpy>=1.26",
+    "rank-bm25>=0.2.2",
+    "huggingface_hub>=0.24",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+web = ["streamlit>=1.30"]
+
+[tool.pytest.ini_options]
+pythonpath = ["04_src"]
+testpaths = ["05_tests"]
+
+[tool.setuptools.packages.find]
+where = ["04_src"]
