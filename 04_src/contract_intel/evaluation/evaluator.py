@@ -15,7 +15,7 @@ from ..common.logging import get_logger
 from ..data.queries import EvalQuery, load_queries
 from ..pipeline import Pipeline
 from .diagnose import LABELS_ANSWERABLE, diagnose_answerable, diagnose_unanswerable
-from .guard import check_split, git_commit, record_test_run
+from .guard import SplitGuardError, check_split, git_commit, record_test_run
 from .metrics import abstention_metrics, aggregate_retrieval, auroc, char_precision_recall
 
 log = get_logger()
@@ -35,6 +35,9 @@ def evaluate(pipeline: Pipeline, split: str, purpose: str = "development", confi
     cfg: PipelineConfig = pipeline.cfg
     ks, pk = cfg.evaluation.ks, cfg.evaluation.primary_k
     queries = queries if queries is not None else load_queries(split)
+    stray = [q.query_id for q in queries if q.split != split]
+    if stray:
+        raise SplitGuardError(f"{len(stray)} queries belong to a different split than {split!r} (e.g. {stray[0]})")
     t_all = time.perf_counter()
     raw, errors = [], []
     for q in queries:

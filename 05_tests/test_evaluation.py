@@ -74,6 +74,11 @@ def test_test_run_through_save_run_is_ledgered(tmp_path):
     assert len(led.read_text().splitlines()) == 1
 
 
+def test_queries_labelled_with_another_split_are_rejected(tmp_path):
+    with pytest.raises(SplitGuardError, match="different split"):
+        evaluate(pipe(tmp_path), "train", queries=[EvalQuery("t1", "law", "test", True, (Gold("cuad/A.txt", 0, 5),), "cuad/A.txt")])
+
+
 # ---- evaluator ----
 def test_evaluation_produces_per_query_evidence_and_aggregates(tmp_path):
     p = pipe(tmp_path, abstention={"threshold": None, "target_far": 0.0})
@@ -94,7 +99,7 @@ def test_evaluation_produces_per_query_evidence_and_aggregates(tmp_path):
 def test_calibration_on_test_is_refused(tmp_path):
     p = pipe(tmp_path, abstention={"threshold": None})
     with pytest.raises(ValueError, match="calibrate"):
-        evaluate(p, "test", "final", True, queries=[q for q in queries()])
+        evaluate(p, "test", "final", True, queries=[EvalQuery("t1", "governing law", "test", True, (Gold("cuad/A.txt", LAW, LAW_END),), "cuad/A.txt")])
 
 
 def test_end_to_end_view_scores_abstained_answerable_queries_as_zero(tmp_path):
