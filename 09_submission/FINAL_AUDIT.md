@@ -46,7 +46,7 @@ and are described in words here. Status: PASS = executed or inspected with evide
 | R-47 | No results in README | read README | none (only file pointers) | PASS | — |
 | R-48 | Report readable in ~15 min, n per figure | REPORT 3.4k words, tables | length estimate only | NOT VERIFIED | candidate reads it once |
 | R-49 | >= 10 failures by cause | REPORT s7 | 18 cases with query IDs | PASS | — |
-| R-50 | Brief not copied into the repo | phrase scan of HEAD (6 distinctive sentences: 0 hits); PDF and `00_assessment/` never committed | no copied text. **But** `01_planning/` paraphrases the brief's requirements (page-numbered traceability matrix) | PASS (copy) / RISK (paraphrase) | see KNOWN_ISSUES #3 |
+| R-50 | Brief not copied into the repo | phrase scan of HEAD (6 distinctive sentences: 0 hits); PDF and `00_assessment/` never committed; the only file with page-numbered requirement references (`01_planning/traceability_matrix.md`) was deleted before publication (it remains in earlier commits) | no copied text at HEAD | PASS | — |
 | R-51 | Confidentiality conduct | — | cannot be verified | NOT VERIFIED | — |
 
 ## 2. Automated test run

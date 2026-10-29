@@ -2,7 +2,7 @@
 
 Each assumption covers a point where the brief is unclear. It records the reason and how we would notice if it were wrong.
 README §Assumptions will carry the reviewer-facing subset. Requirement IDs refer to the (git-ignored) requirements catalogue
-and to `traceability_matrix.md`.
+(the requirements-to-code matrix was removed before publication).
 
 | ID | Assumption | Why | Revisit if |
 |---|---|---|---|

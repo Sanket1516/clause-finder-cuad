@@ -3,7 +3,7 @@
 ## Outputs
 | File | Content |
 |---|---|
-| `01_planning/traceability_matrix.md` | Every mandatory requirement → page, module, config, test, report artifact, status |
+| *(removed before publication: it carried page references to the confidential brief)* | Every mandatory requirement → page, module, config, test, report artifact, status |
 | `01_planning/architecture.md` | Single-process package; module responsibilities; data flow; config strategy; alternatives; resources |
 | `01_planning/data_contracts.md` | Document, BenchmarkQuery, UnanswerableQuery, Chunk, RetrievedPassage, SearchResponse, QueryPrediction, ExperimentRecord, TestRunLedgerEntry; invariants INV-1…INV-6 |
 | `01_planning/evaluation_protocol.md` | Selection, splits, metric definitions (authors' semantics), abstention metrics + calibration, **primary metric / guardrails / acceptance rule**, diagnosis taxonomy, test-set policy, reproducibility |
