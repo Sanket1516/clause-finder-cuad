@@ -33,10 +33,12 @@ def write_jsonl(path: Path, rows) -> None:
 def main() -> None:
     tests = load_tests(RAW / "benchmarks" / "cuad.json")
     mini = select_mini_with_ids(tests)
-    assert len(mini) == 194 if len(tests) >= 194 else True
+    if len(tests) >= 194 and len(mini) != 194:
+        raise SystemExit(f"expected 194 selected queries, got {len(mini)}")
     ids = {doc_id_of(s["file_path"]) for m in mini for s in m["test"]["snippets"]}
     store = DocumentStore(RAW / "corpus", ids)
-    assert not store.missing, store.missing
+    if store.missing:
+        raise SystemExit(f"missing documents (run download_data.py): {store.missing[:3]}")
 
     qrows, grows = [], []
     for m in mini:

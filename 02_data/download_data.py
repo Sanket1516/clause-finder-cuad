@@ -56,7 +56,8 @@ def main() -> None:
 
     cuad = fetch("benchmarks/cuad.json")
     rec = {"benchmark": {"path": "benchmarks/cuad.json", "sha256": sha256_file(cuad)}}
-    assert rec["benchmark"]["sha256"] == sums["benchmarks/cuad.json"], "cuad.json checksum mismatch"
+    if rec["benchmark"]["sha256"] != sums["benchmarks/cuad.json"]:  # explicit raise: asserts vanish under python -O
+        raise SystemExit("cuad.json checksum mismatch; refusing to continue")
 
     mini = select_mini_with_ids(load_tests(cuad))
     needed = sorted({unicodedata.normalize("NFC", m["test"]["snippets"][0]["file_path"]) for m in mini}
