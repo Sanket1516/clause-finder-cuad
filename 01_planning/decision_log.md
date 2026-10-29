@@ -30,3 +30,15 @@ Append-only. Format: ID · date · decision · alternatives · rationale · stat
 
 ## Failed experiments / deviations
 (none yet)
+
+## Additions during implementation (2026-10-29)
+
+| ID | Decision | Rationale / evidence | Status |
+|---|---|---|---|
+| D-014 | BM25 implemented in-repo (no `rank_bm25`) | transparent, tiny, no dependency | Accepted |
+| D-015 | Protocol Amendment 1 (taxonomy, calibration on answerable only, actual counts) committed before any metric | see `evaluation_protocol.md` | Accepted |
+| D-016 | Loop run: 15 pre-registered candidates, 3 accepted (route-filter, paragraph-chunks, stem-light); `final` = that sequence | `03_experiments/experiment_summary.md` | Accepted (train evidence only) |
+| D-017 | The pre-declared rule cannot accept gate-only changes; `abstain-norm` (CAR 0.205 → 0.410 on train) was rejected by the rule and NOT adopted | integrity of the pre-registered rule; recorded as a limitation | **Open: needs user decision** (a labelled post-hoc abstention stage is possible) |
+| D-018 | The final configuration regressed correct abstention on never-indexed contracts (7/7 → 1/7) | `PROMPT_05_SUMMARY.md` finding 1; guardrail G2 was aggregate and missed it | Open |
+| D-019 | Demo/UI examples drawn from train / frozen-unanswerable-train only; wording never asserts a clause is absent | legal-safety + leakage hygiene | Accepted |
+| D-020 | Streamlit started with `--server.address localhost` in the run guide | default binds all interfaces | Accepted |

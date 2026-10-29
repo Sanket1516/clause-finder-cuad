@@ -28,3 +28,25 @@ def make_config(**over):
     for k, v in over.items():
         raw[k] = {**raw.get(k, {}), **v} if isinstance(v, dict) else v
     return config_from_dict(raw)
+
+
+def make_app_env(tmp_path: Path, monkeypatch, threshold: float = 0.0):
+    """A self-contained 'installation': data dir (manifest + corpus) and config dir, selected through the env vars."""
+    import json
+
+    from contract_intel.common.config import dump_config
+    data = tmp_path / "data"
+    corpus = data / "raw" / "corpus" / "cuad"
+    corpus.mkdir(parents=True)
+    for name, text in {"A.txt": DOC_A, "B.txt": DOC_B, "C.txt": DOC_C}.items():
+        (corpus / name).write_text(text, encoding="utf-8")
+    (data / "document_manifest.jsonl").write_text(
+        "".join(json.dumps({"doc_id": f"cuad/{n}.txt"}) + "\n" for n in "ABC"), encoding="utf-8")
+    cfgs = tmp_path / "configs"
+    cfgs.mkdir()
+    dump_config(make_config(name="final", query={"strip_title_prefix": True}, routing={"mode": "filter"}, abstention={"threshold": threshold}), cfgs / "final.yaml")
+    dump_config(make_config(name="strict", query={"strip_title_prefix": True}, routing={"mode": "filter"}, abstention={"threshold": 1e9}), cfgs / "strict.yaml")
+    dump_config(make_config(name="uncalibrated", abstention={"threshold": None}), cfgs / "uncalibrated.yaml")
+    monkeypatch.setenv("CONTRACT_INTEL_DATA_DIR", str(data))
+    monkeypatch.setenv("CONTRACT_INTEL_CONFIG_DIR", str(cfgs))
+    return data, cfgs

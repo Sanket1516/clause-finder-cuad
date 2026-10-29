@@ -14,7 +14,7 @@ def load_store(data_dir: Path = DATA_DIR) -> DocumentStore:
     manifest = Path(data_dir) / "document_manifest.jsonl"
     corpus = Path(data_dir) / "raw" / "corpus"
     if not manifest.exists():
-        raise MissingDataError(f"{manifest} not found. Run: python 02_data/prepare_dataset.py")
+        raise MissingDataError(f"{manifest} not found. Set up the data first: python 02_data/download_data.py, then python 02_data/prepare_dataset.py")
     ids = [json.loads(l)["doc_id"] for l in manifest.read_text(encoding="utf-8").splitlines() if l.strip()]
     if not corpus.exists():
         raise MissingDataError(f"{corpus} not found. Run: python 02_data/download_data.py")
