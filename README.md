@@ -122,3 +122,7 @@ Limitations: see REPORT section 8 (abstention is weak, lexical retrieval misses 
 
 ## 10. AI-tool usage
 I used an AI coding assistant (Claude Code) to help write and test the code and to draft the documentation, working from my own prompts and design choices. I reviewed the results, ran the experiments and can explain and modify every part. No language model is used by the system itself.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
