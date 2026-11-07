@@ -1,8 +1,32 @@
+<div align="center">
+
 # Contract Clause Search
+
+![Python](https://img.shields.io/badge/Python_3.10+-3776AB?logo=python&logoColor=white)
+![BM25](https://img.shields.io/badge/retrieval-BM25-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+![Typer](https://img.shields.io/badge/CLI-Typer-black)
+![Tests](https://img.shields.io/badge/tests-168-2ea44f)
+![No LLM](https://img.shields.io/badge/LLM-none%2C_fully_local-555)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
+
+</div>
 
 A small retrieval system that, given a natural-language question about a contract, returns the passages most likely to answer it
 — each with its source document and exact character offsets — or says that no passage was found strong enough. It is built and
 measured on the CUAD portion of the LegalBench-RAG benchmark. Measured results and analysis are in [REPORT.md](REPORT.md), not here.
+
+## Screenshots
+
+> Real captures of the Streamlit app and CLI running on the downloaded CUAD data with the `final` configuration.
+
+**Answered** — the anti-assignment clause (§18 "Assignment") is returned first, with its document and exact character range:
+
+<p align="center"><img src="docs/screenshots/02-results.jpg" alt="Web app showing 5 passages that cleared the evidence threshold, top one is clause 18 Assignment" width="880" /></p>
+
+| Abstains when evidence is weak | Command-line interface |
+|:---:|:---:|
+| <img src="docs/screenshots/03-abstain.jpg" alt="No sufficient evidence found: best passage scored below the threshold" width="430" /> | <img src="docs/screenshots/cli.jpg" alt="CLI search output with scores, documents and character offsets" width="430" /> |
 
 ## 1. Overview
 Lawyers and business teams routinely ask questions such as "Is there an anti-assignment clause?" or "What is the governing law?" and
